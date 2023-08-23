@@ -51,7 +51,7 @@ const SliderNouveauxCollabs = () => {
        <>
        {/* affichage du slider */}
         <Slider {...settings}>
-          {listeCollab.map((collab, index)=>{
+         {listeCollab.map((collab, index)=>{
            return(
                <section className="homeSlide contentWidth">
                <div className="box d_flex top" key={index}> 
@@ -74,11 +74,12 @@ const SliderNouveauxCollabs = () => {
 }
 
   return (
-    <div className='nouveaux-collabs'>
-         <Typography variant="h1" className="text-white text-center text-3xl p-5">Nos nouveaux collaborateurs</Typography>
+    <div>
+      {listeCollab.length !==0 ?
+         (<div className='nouveaux-collabs'><Typography variant="h1" className="text-white text-center text-3xl p-5">Nos nouveaux collaborateurs</Typography>
          <center>
          <SlideCard/> 
-         </center>
+         </center></div>) : (<div className='nouveaux-collabs'><Typography variant="h1" className="text-white text-center text-3xl p-5">Nous n'avons pas eu de nouveaux collaborateurs durant ce mois</Typography></div>)}
     </div>
   )
 }
