@@ -28,7 +28,9 @@ const SliderNouveauxCollabs = () => {
       //Voir la liste des collaborateurs embauchés en ce jour
       const listeCollab = listeCollabs.filter((liste) => {
         const date = new Date(liste.dateEmbauche);
-        return date.toDateString() === today.toDateString();
+        const currentMonth = today.getMonth();
+        const employeeMonth = date.getMonth();
+        return employeeMonth === currentMonth;
       });
 
       //slider
