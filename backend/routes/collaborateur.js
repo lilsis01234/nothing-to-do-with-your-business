@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const cookieParser = require('cookie-parser')
+router.use(cookieParser());
+
 
 const Collaborateur = require('../Modele/Collaborateur');
 const Departement = require('../Modele/Departement');
@@ -167,7 +170,7 @@ router.get('/all_collaborateurs', async(req,res) => {
 
 
 //Liste des derniers collaborateurs
-router.get('/listes_derniers_embauches',  async (req, res) => {
+router.get('/listes_derniers_embauches',async (req, res) => {
     try {
         const collaborateur = await Collaborateur.findAll({
             order : [['dateEmbauche', 'DESC']],

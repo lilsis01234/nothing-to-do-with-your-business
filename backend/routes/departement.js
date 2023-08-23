@@ -1,6 +1,8 @@
 const Departement = require('../Modele/Departement');
 const Poste = require('../Modele/Poste');
 const router = require('express').Router();
+const Collaborateur = require('../Modele/Collaborateur');
+
 
 
 //Ajouter un nouveau département
@@ -88,6 +90,35 @@ router.delete('/delete/:id', async(req, res) => {
     catch (error){
         console.error('Erreur lors de la suppression du département: ', error)
         res.status(500).json({error : 'Erreur lors de la suppression du département'})
+    }
+})
+
+
+//Pour récupérer les employees par departement
+router.get('/:departementId/collaborateur', async(req, res) => {
+    try{
+       const departementId = req.params.departementId;
+
+        //Rechercher le postes qui appartiennent au departement
+        const postesDuDepartement = await Poste.findAll({
+            where : {departement : departementId}
+        })
+
+        if (!postesDuDepartement || postesDuDepartement.length === 0){
+            return res.status(404).json({message: 'Aucun poste trouvé pour ce département'})
+        }
+
+        //Récupérations des employés associé à ce poste
+        const employes = await Collaborateur.findAll({
+            where : {poste: postesDuDepartement.map(poste => poste.id)},
+            include : {model : Poste}
+        })
+
+        res.json(employes);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({message : 'Erreur lors de la récupération des employés'})
     }
 })
 

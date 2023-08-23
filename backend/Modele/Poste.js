@@ -31,4 +31,5 @@ Poste.belongsTo(Departement, {
 
 
 
+
 module.exports = Poste;

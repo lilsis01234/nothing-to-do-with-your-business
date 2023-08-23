@@ -34,7 +34,7 @@ const connection = mysql.createConnection({
     database : 'testintranet',
 })
 */
-app.use(cors({ origin: 'http://192.168.16.244:3000', credentials: true }));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 //Ajout de middleware express.json()
 app.use(express.json())
 
@@ -79,6 +79,6 @@ connection.connect((err) =>{
 
 
 //Initialisation du serveur
-app.listen(4000, () => {
-    console.log('Serveur Express en écoute sur le port 4000')
+app.listen(8000, () => {
+    console.log('Serveur Express en écoute sur le port 8000')
 });

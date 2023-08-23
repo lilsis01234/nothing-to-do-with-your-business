@@ -1,9 +1,9 @@
 const {Sequelize} = require('sequelize');
 
 //Initalisation de la base de donnée
-const sequelize = new Sequelize('mysql://127.0.0.1:3306/intranetTest', { 
-  username : 'ddroot', 
-  password :'123456'
+const sequelize = new Sequelize('mysql://localhost:3306/intranettest', { 
+  username : 'root', 
+  password :''
 })
 
 

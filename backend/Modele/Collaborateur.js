@@ -53,4 +53,6 @@ Collaborateur.belongsTo(Poste, {
     onUpdate : 'CASCADE',
 })
 
+
+
 module.exports = Collaborateur;
