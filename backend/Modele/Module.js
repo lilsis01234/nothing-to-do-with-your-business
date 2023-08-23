@@ -5,7 +5,7 @@ const Formation = require('./formation');
 class Module extends Model{}
 
 Module.init({  
-    titreModule :  {
+    titreModule : {
         type : DataTypes.STRING,
         allowNull : false,
     },
@@ -20,13 +20,16 @@ Module.init({
         model : Formation,
         key : 'id'
     }
-    }},{
-    sequelize,
-    modelName : 'Module'
-})
+    }}
+    ,
+    {
+        sequelize,
+        modelName : 'Module'
+    }
+)
 
 Module.belongsTo(Formation, {
-    foreignKey : 'departement',
+    foreignKey : 'formation',
     onDelete : 'CASCADE'
 })
 
