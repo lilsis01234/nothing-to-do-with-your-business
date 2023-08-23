@@ -79,7 +79,7 @@ const AjoutCollaborateur = () => {
         formData.append('matricule', matricule);
         formData.append('email', email);
 
-        axios.post('http://192.168.16.244:4000/api/collaborateur/add', formData, {
+        axios.post('http://localhost:8000/api/collaborateur/add', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
