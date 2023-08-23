@@ -1,5 +1,6 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../database/database');
+const Collaborateur = require('./Collaborateur');
 
 class DiscussionFormation extends Model{}
 
@@ -22,11 +23,23 @@ DiscussionFormation.init({
         references : {
         model : Formation,
         key : 'id'
+    }},
+    collaborateur:{
+        type : DataTypes.INTEGER,
+        allowNull : false,
+        references : {
+        model : Collaborateur,
+        key : 'id'
     }
 }},{
     sequelize,
     modelName:'DiscussionFormation'
 }
 )
+
+Module.belongsTo(Formation, {
+    foreignKey : 'formation',
+    onDelete : 'CASCADE'
+})
 
 Module.exports = DiscussionFormation;
