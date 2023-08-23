@@ -1,5 +1,6 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../database/database');
+const Collaborateur = require('./Collaborateur');
 
 class Formation extends Model{}
 
@@ -19,6 +20,14 @@ Formation.init({
     approbation:{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+    },
+    formateur:{
+        type : DataTypes.INTEGER,
+        allowNull : false,
+        references : {
+        model : Collaborateur,
+        key : 'id'
+    }
     }},{
         sequelize,
         modelName : 'Formation'
