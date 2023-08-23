@@ -18,7 +18,7 @@ const SideBarUser = () => {
         {isSidebarOpen && (
             <div className={`sideBar ${isSidebarOpen ? 'open' : 'closed'}`}>
                 <ul className="sideBar_menu">
-                    <li className="sideBar_menu_item " ><Link className="flex flex-row items-center"><HiOutlineHome className="mr-2"/>Acceuil</Link></li>
+                    <li className="sideBar_menu_item " ><Link className="flex flex-row items-center" to="/user/home"><HiOutlineHome className="mr-2"/>Acceuil</Link></li>
                     {/* <Typography variant="paragraph" className="text-white font-[Poppins] text-center p-3">Communauté</Typography> */}
                     <li className="sideBar_menu_item " ><Link className="flex flex-row items-center"><HiOutlineNewspaper className="mr-2"/>Actualités</Link></li>
                     <li className="sideBar_menu_item " ><Link className="flex flex-row items-center"><MdEvent className="mr-2"/>Evénements</Link></li>
