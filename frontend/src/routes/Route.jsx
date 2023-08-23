@@ -9,6 +9,7 @@ import ForgotPasswordForm from '../components/Authentification/ForgotPasswordFor
 import ResetPasswordForm from '../components/Authentification/ResetPasswordForm/ResetPasswordForm'
 import PageDepartement from '../components/Administrateur/Departement/Departement'
 import PagePoste from '../components/Administrateur/Poste/Poste'
+import Formations from '../components/Other_component/formations/formations'
 
 import AjoutCollaborateur from '../components/Administrateur/Collaborateur/AjoutCollaborateur/AjoutCollaborateur'
 import ListeCollaborateur from '../components/Administrateur/Collaborateur/ListeCollaborateur/ListeCollaborateur'
@@ -34,7 +35,7 @@ function AppRoute(){
                 {/* Routes pour le backOffice du module Gestion des collaborateurs */}
                 <Route path="/admin/departement" element={<PageDepartement/>}/>
                 <Route path="/admin/poste" element={<PagePoste/>}/>
-                
+                <Route path="/formations" element={<Formations/>}/>
                 <Route path="/admin/collaborateur/add" element={<AjoutCollaborateur/>}/>
                 <Route path="/admin/collaborateur/liste" element={<ListeCollaborateur/>}/>
                 <Route path="/admin/home" element={<HomeAdmin/>}/>
