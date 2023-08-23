@@ -1,7 +1,7 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../database/database');
 
-class DiscussionFormation extends model{}
+class DiscussionFormation extends Model{}
 
 DiscussionFormation.init({
     sujet:{
