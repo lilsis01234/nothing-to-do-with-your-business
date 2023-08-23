@@ -12,7 +12,7 @@ const ViewCollaborateur = ({ CollabToView }) => {
     const [collab, setCollab] = useState({});
 
     useEffect(() => {
-        axios.get(`http://192.168.16.244:4000/api/collaborateur/${CollabToView.id}`)
+        axios.get(`http://localhost:8000/api/collaborateur/${CollabToView.id}`)
             .then((response) => {
                 setCollab(response.data.collaborateur)
             })

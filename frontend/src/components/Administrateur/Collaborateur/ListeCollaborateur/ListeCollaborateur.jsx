@@ -41,7 +41,7 @@ const ListeCollaborateur = () => {
 
     //Récupération de la liste des collaborateurs
     const fetchCollaborateur = () => {
-      axios.get('http://192.168.16.244:4000/api/collaborateur/all_collaborateurs')
+      axios.get('http://localhost:8000/api/collaborateur/all_collaborateurs')
         .then(res => {setListCollab(res.data); setAllCollab(res.data)})
         .catch(err => console.log(err));
     }
@@ -224,7 +224,7 @@ const ListeCollaborateur = () => {
                     (recherchedepartement === 'null' || collaborateur.departement.toLowerCase().includes(recherchedepartement.toLowerCase()))
                   )).map(collaborateur => (
                       <tr key={collaborateur.id}>
-                          <td><Avatar src={`http://192.168.16.244:4000/${collaborateur.image}`} alt={collaborateur.nom}  size="xs" className="rounded-full w-16 h-16 object-cover"/></td>
+                          <td><Avatar src={`http://localhost:8000/${collaborateur.image}`} alt={collaborateur.nom}  size="xs" className="rounded-full w-16 h-16 object-cover"/></td>
                           <td>{collaborateur.matricule}</td>
                           <td>{collaborateur.nom}</td>
                           <td>{collaborateur.prenom}</td>

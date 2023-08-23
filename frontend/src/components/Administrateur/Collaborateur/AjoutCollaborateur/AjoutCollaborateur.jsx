@@ -5,21 +5,17 @@ import SideBar from '../../SideBarAdmin/SideBar'
 import axios from 'axios'
 import '../../../Other_component/Page.css'
 import './AjoutCollaborateur.css'
-import { Avatar } from '@material-tailwind/react'
+import { Avatar, Input, Select, Option} from '@material-tailwind/react'
 
 const AjoutCollaborateur = () => {
-
-    const Sexe = [
-        { id: 1, nom: 'masculin' },
-        { id: 2, nom: 'feminin' }
-    ]
+  
 
     const Site = [
         { id : 1, nom:'Fivoarana'},
         { id : 2, nom:'Ivohasina'},
         { id: 3, nom:'Soazaraina'}
     ]
-
+    
 
     const navigate = useNavigate();
     const [nom, setNom] = useState('');
@@ -37,11 +33,16 @@ const AjoutCollaborateur = () => {
     const [sexe, setSexe] = useState('');
     const [email, setEmail] = useState('');
 
+    const Sexe = [
+        { id: 1, nom: 'masculin' },
+        { id: 2, nom: 'feminin' }
+    ]
+
     //Récupération de la liste des postes
     const [listePoste, setListePoste] = useState([])
 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/poste/all_postes')
+        axios.get('http://localhost:8000/api/poste/all_postes')
             .then((res) => {
                 setListePoste(res.data)
             })
@@ -96,108 +97,64 @@ const AjoutCollaborateur = () => {
             <div className="content">
                 <SideBar />
                 <div className="main-content">
-                    <div className="collaborateurAddContent">
-                        <h1 className="font-bold text-2xl p-5">Ajouter un collaborateur</h1>
+                    <div className="collaborateurAddContent bg-black w-full rounded-lg">
+                        <h1 className="font-bold text-2xl pt-5 text-white">Ajouter un collaborateur</h1>
                         <form onSubmit={handleSubmit} className="collaborateurAddContent_Form">
                             <div className="collaborateurAddContent_FormContent">
                                 <div className="collaborateurAddContent_Form_Photo">
                                     <label >Photo:</label><br></br>
-                                      
                                         {selecteImage && (
                                             <Avatar src={URL.createObjectURL(selecteImage)} className="w-32 h-32 rounded-full"/>
                                         )}
-                                        <input type='file' onChange={handleImageChange}  accept="image/*"></input>
+                                        <input type='file' onChange={handleImageChange}  accept="image/*" ></input>
                                 </div>
-                                <div className="collaborateurAddContent_Form_Item">
-                                    <div>
-                                        <label > Matricule:</label><br></br>
-                                        <input type='text' onChange={(e) => { setMatricule(e.target.value) }} className='add-input'></input>
-                                    </div>
-                                    <div>
-                                        <label>Nom:</label> <br></br>
-                                        <input type='text' onChange={(e) => { setNom(e.target.value) }} className='add-input'></input>
-                                    </div>
-
-                                    <div >
-                                        <label >Prenom:</label><br></br>
-                                        <input type='text' onChange={(e) => { setPrenom(e.target.value) }} className='add-input'></input>
-                                    </div>
+                                <div className="grid grid-cols-12 p-5">
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Matricule" onChange={(e) => { setMatricule(e.target.value) }}  size="lg"/></div>
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Nom" onChange={(e) => { setNom(e.target.value) }} size="lg"/></div>
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Prénom" onChange={(e) => { setPrenom(e.target.value) }} size="lg"/></div>
                                 </div>
-                                <div className="collaborateurAddContent_Form_Item">
-                                    <div>
-                                        <label > Date de naissance:</label><br></br>
-                                        <input type='date' onChange={(e) => { setdateNaissance(e.target.value) }} className='add-input'></input>
-                                    </div>
-                                    <div>
-                                        <label >Sexe</label><br/>
-                                        <select
-                                            value={sexe}
-                                            onChange={(e) => setSexe(e.target.value)}
-        
-                                        >
-                                            {Sexe.map((sexe) => (
-                                                <option key={sexe.id} value={sexe.nom}>
-                                                    {sexe.nom}
-                                                </option>
+                                <div className="grid grid-cols-12 p-5">
+                                    <div className="col-span-4 m-2"> <Input type="date" label="Date de Naissance" onChange={(e) => { setdateNaissance(e.target.value) }}  size="lg"/></div>
+                                    <div className="col-span-4 m-2">
+                                        <Select label="Sexe"  onChange={(e) => setSexe(e)}>
+                                            {Sexe.map((sexeitem) => (
+                                                <Option key={sexeitem.id} value={sexeitem.nom}>
+                                                    {sexeitem.nom}
+                                                </Option>
                                             ))}
-                                        </select>
+                                        </Select>
                                     </div>
-                                </div>
-                                <div className="collaborateurAddContent_Form_Item">
-                                    <div>
-                                        <label >Adresse:</label><br></br>
-                                        <input type='text' onChange={(e) => { setLot(e.target.value) }} className='add-input'>
-                                        </input>
-                                    </div>
-                                    <div>
-                                        <label >Quartier:</label><br></br>
-                                        <input type='text' onChange={(e) => { setQuartier(e.target.value) }} className='add-input'></input>
-                                    </div>
-                                    <div>
-                                        <label >Ville:</label><br></br>
-                                        <input type='text' onChange={(e) => { setVille(e.target.value) }} className='add-input'></input>
-                                    </div>
-                                </div>
-                                <div className="collaborateurAddContent_Form_Item">
-                                    <div>
-                                        <label > Téléphone:</label><br></br>
-                                        <input type='text' onChange={(e) => { setTelephone(e.target.value) }} className='add-input'></input>
-                                    </div>
-                                    <div>
-                                        <label > Adresse e-mail</label><br></br>
-                                        <input type='email' onChange={(e) => { setEmail(e.target.value) }} className='add-input'></input>
-                                    </div>
-                                </div>
-                                <div className="collaborateurAddContent_Form_Item">
-                                    <div>
-                                        <label > Date d'embauche:</label><br></br>
-                                        <input type='date' onChange={(e) => { setdateEmbauche(e.target.value) }} ></input>
-                                    </div>
-                                    <div >
-                                        <label >Poste</label><br/>
-                                        <select
-                                            value={poste}
-                                            onChange={(e) => setPoste(e.target.value)}
-
-                                        >
-                                        <option value="">Sélectionner une option</option>
+                                </div> 
+                                <div className="grid grid-cols-12 p-5">
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Adresse" onChange={(e) => { setLot(e.target.value) }}  size="lg"/></div>
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Quartier" onChange={(e) => { setQuartier(e.target.value) }} size="lg"/></div>
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Ville" onChange={(e) => { setVille(e.target.value) }} size="lg"/></div>
+                                </div>    
+                                <div className="grid grid-cols-12 p-5">
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Téléphone" onChange={(e) => { setTelephone(e.target.value) }}  size="lg"/></div>
+                                    <div className="col-span-4 m-2"> <Input type="text" label="Email" onChange={(e) => { setEmail(e.target.value) }} size="lg"/></div>
+                                </div> 
+                                <div className="grid grid-cols-12 p-5">
+                                    <div className="col-span-4 m-2"> <Input type="date" label="Date d'embauche" onChange={(e) => { setdateEmbauche(e.target.value)}}  size="lg"/></div>
+                                    <div className="col-span-4 m-2">
+                                    <Select label="Poste"  onChange={(e) => setPoste(e)}>
                                             {listePoste.map((poste) => (
-                                                <option key={poste.id} value={poste.id}>
-                                                    {poste.titrePoste}
-                                                </option>
+                                                <Option key={poste.id} value={poste.id}>
+                                                  {poste.titrePoste}
+                                                </Option>
                                             ))}
-                                        </select>
+                                        </Select>
                                     </div>
-                                    <div>
-                                        <label > Site:</label><br></br>
-                                        <select value={site} onChange = {(e) => setSite(e.target.value)}>
-                                            {Site.map((Site) => (
-                                                <option key={Site.id} value={Site.nom}> {Site.nom}</option>
+                                    <div className="col-span-4 m-2">
+                                    <Select label="Site"  onChange={(e) => setSite(e)}>
+                                            {Site.map((site) => (
+                                                <Option key={site.id} value={site.nom}>
+                                                  {site.nom}
+                                                </Option>
                                             ))}
-                                        </select>
-
+                                        </Select>
                                     </div>
-                                </div>
+                                </div> 
                                 <button type='submit' className="collaborateurAddContent_Form_Button">Ajouter</button>
                             </div>
                         </form>

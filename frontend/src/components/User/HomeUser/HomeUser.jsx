@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import NavBarUser from '../NavBarUser/NavBarUser';
+import SliderNouveauxCollabs from '../NouveauxCollaborateurs/slider';
+
 
 function HomeUser (){
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ function HomeUser (){
     return (
         <div className="page">
            <NavBarUser/>
+           <SliderNouveauxCollabs/>
         </div>
     )
 }

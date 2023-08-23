@@ -23,7 +23,7 @@ const ModifCollab = ({CollabToEdit, onCollabUpdated}) => {
     const [sexe, setSexe] = useState(CollabToEdit?.sexe || '');
     //Récupération de la liste des postes 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/poste/all_postes')
+        axios.get('http://localhost:8000/api/poste/all_postes')
             .then((res) => {
                 setListePoste(res.data)
             })
@@ -98,6 +98,7 @@ const ModifCollab = ({CollabToEdit, onCollabUpdated}) => {
             .then((response) => {
                 onCollabUpdated();
                 alert('Collaborateur modifier avec succès')
+                window.location.reload();
             })
             .catch((error) => {
                 console.error(error)

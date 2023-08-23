@@ -1,6 +1,6 @@
 import React, {useEffect } from "react";
-import '../HomeAdmin/page.css'
-import NavBar from "../NavBar/NavbarAdmin";
+import '../../Other_component/Page.css'
+import NavBarAdmin from '../NavBar/NavBarAdmin'
 import SideBar from "../SideBarAdmin/SideBar";
 import ListDepartement from "./listeDepartement/listeDepartement";
 import {useNavigate} from "react-router-dom"
@@ -24,7 +24,7 @@ function PageDepartement(){
 
     return (
         <div className="page">
-            <NavBar/>
+            <NavBarAdmin/>
             <div className="content">
                 <SideBar/>
                 <div className="main-content">

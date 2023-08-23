@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar/NavbarAdmin';
 import SideBar from '../SideBarAdmin/SideBar';
-import '../HomeAdmin/page.css'
+import '../HomeAdmin/Page.css'
 import ListePoste from './ListePoste/ListePoste';
 
 

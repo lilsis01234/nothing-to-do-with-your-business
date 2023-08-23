@@ -7,14 +7,15 @@ import HomeUser from '../components/User/HomeUser/HomeUser'
 import ErrorPage from '../components/Other_component/ErrorPage/ErrorPage'
 import ForgotPasswordForm from '../components/Authentification/ForgotPasswordForm/ForgotPasswordForm'
 import ResetPasswordForm from '../components/Authentification/ResetPasswordForm/ResetPasswordForm'
-import PageDepartement from '../components/Administrateur/Departement/departement'
+import PageDepartement from '../components/Administrateur/Departement/Departement'
 import PagePoste from '../components/Administrateur/Poste/Poste'
 
 import AjoutCollaborateur from '../components/Administrateur/Collaborateur/AjoutCollaborateur/AjoutCollaborateur'
 import ListeCollaborateur from '../components/Administrateur/Collaborateur/ListeCollaborateur/ListeCollaborateur'
 import Profil from '../components/ProfilUser/PageProfil/Profil'
 import ProfilParametre from '../components/ProfilUser/ProfilParametre/ProfilParametre'
-import ListeCollaborateurFront from '../components/User/Collaborateur /ListeCollaborateur/ListeCollaborateurFront'
+import ListeCollaborateurFront from '../components/User/Collaborateur/ListeCollaborateur/ListeCollaborateurFront'
+import Organigramme from '../components/User/Organigramme/Organigramme'
 
 function AppRoute(){
     return (
@@ -41,6 +42,7 @@ function AppRoute(){
                 {/* Routes pour le frontOffice du module Gestion des collaborateur */}
                 <Route path="/user/home" element={<HomeUser/>}/>
                 <Route path="/collaborateur/list" element={<ListeCollaborateurFront/>}/>
+                <Route path="/enterprise/organigramme" element={<Organigramme/>}/>
 
               
 

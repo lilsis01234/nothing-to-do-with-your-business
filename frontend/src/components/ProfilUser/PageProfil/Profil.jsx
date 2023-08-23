@@ -12,6 +12,7 @@ import 'moment/locale/fr'
 import ModifierProfil from '../ModifierProfil/ModifierProfil'
 import NavBarUser from '../../User/NavBarUser/NavBarUser'
 import { useNavigate } from 'react-router'
+import SideBarUser from '../../User/SideBar/SideBarUser'
 
 
 
@@ -23,7 +24,7 @@ const Profil = () => {
         if (!token){
             navigate('/');
         }
-    }, [token])
+    }, [token]) 
    
 
     const role = localStorage.getItem('role')
@@ -50,7 +51,7 @@ const Profil = () => {
 
 
     useEffect(() => {
-        axios.get(`http://192.168.16.244:4000/api/user/profile/${idProfile}`)
+        axios.get(`http://localhost:8000/api/user/profile/${idProfile}`)
             .then(response => {
                 setCollaborateurData(response.data)
             })
@@ -75,12 +76,12 @@ const Profil = () => {
                 <Navbar /> : <NavBarUser />
             }
             <div className="content">
-                {role === 'Administrateur' && <SideBar />
+                {role === 'Administrateur' ? <SideBar/> : <SideBarUser/>
                 }
                 <div className="main-content">
                     <div className="bg-black rounded-md userProfile flex flex-row">
                         <div className="m-8 p-5 grid grid-row-3">
-                            <Avatar src={`http://192.168.16.244:4000/${collaborateurData.Collaborateur.image}`} variant="rounded" className="row-span-2 imagePhoto"/>
+                            <Avatar src={`http://localhost:8000/${collaborateurData.Collaborateur.image}`} variant="rounded" className="row-span-2 imagePhoto"/>
                             <Button className="h-10 flex flex-row justify-center bg-[#9C1D21]" onClick={()=>{OpenModal()}}><MdModeEdit/>Modifier</Button>
                         </div>
                         <div className="bg-white m-5 p-5 rounded-md w-full">
@@ -142,17 +143,21 @@ const Profil = () => {
                                 <AccordionHeader onClick={() => handleOpen(2)} className="font-[Poppins]"> Informations professionnelle </AccordionHeader>
                                 <AccordionBody className="font-[Poppins]">
                                     <div className="grid grid-cols-12 px-10">
-                                        <div className="col-span-4 ">
+                                        <div className="col-span-3 ">
                                             <p className="font-bold text-[#9C1D21]">Date d'embauche</p>
                                             <p>{formattedDateEmbauche}</p>
                                         </div>
-                                        <div className="col-span-4 ">
+                                        <div className="col-span-3 ">
                                             <p className="font-bold text-[#9C1D21]">Poste</p>
                                             <p>{collaborateurData.Collaborateur.Poste.titrePoste}</p>
                                         </div>
-                                        <div className="col-span-4 ">
+                                        <div className="col-span-3 ">
                                             <p className="font-bold text-[#9C1D21]">Département</p>
                                             <p>{collaborateurData.Collaborateur.Poste.Departement.nomDepartement}</p>
+                                        </div>
+                                        <div className="col-span-3 ">
+                                            <p className="font-bold text-[#9C1D21]">Site</p>
+                                            <p>{collaborateurData.Collaborateur.site}</p>
                                         </div>
                                     </div>
                                 </AccordionBody>

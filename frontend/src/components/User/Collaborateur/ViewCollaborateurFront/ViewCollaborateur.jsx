@@ -7,7 +7,7 @@ const ViewCollaborateur = ({CollabToView}) => {
     const [collab, setCollab] = useState(null);
 
     useEffect(() => {
-      axios.get(`http://192.168.16.244:4000/api/user/profile/${CollabToView.id}`)
+      axios.get(`http://localhost:8000/api/user/profile/${CollabToView.id}`)
         .then(response => {
             setCollab(response.data)
         })
@@ -26,7 +26,7 @@ const ViewCollaborateur = ({CollabToView}) => {
     <>
       <Card className="w-96">
         <CardHeader floated={false} className="h-80 flex items-center justify-center">
-            <img src={`http://192.168.16.244:4000/${collab.Collaborateur.image}`} alt={collab.Collaborateur.nom} />
+            <img src={`http://localhost:8000/${collab.Collaborateur.image}`} alt={collab.Collaborateur.nom} />
         </CardHeader>
         <CardBody className="text-center pt-10 ">
             <Typography variant="h4" color="blue-gray" className="mb-2 font-[Poppins]">{collab.Collaborateur.prenom} {collab.Collaborateur.nom} </Typography>

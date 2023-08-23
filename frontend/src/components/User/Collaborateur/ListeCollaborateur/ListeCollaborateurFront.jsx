@@ -6,6 +6,8 @@ import '../../../Other_component/Page.css'
 import './ListeCollaborateurFront.css'
 import Modal from 'react-modal'
 import ViewCollaborateur from '../ViewCollaborateurFront/ViewCollaborateur';
+import SideBarUser from '../../SideBar/SideBarUser';
+// import Slider from '../../NouveauxCollaborateurs/slider';
 
 
 
@@ -26,7 +28,7 @@ const ListeCollaborateurFront = () => {
     const [listCollab, setListeCollab] = useState([]);
 
     const fetchCollaborateur = () => {
-        axios.get('http://192.168.16.244:4000/api/compte_collaborateur/liste_collaborateur')
+        axios.get('http://localhost:8000/api/compte_collaborateur/liste_collaborateur')
             .then(res => { setListeCollab(res.data)})
             .catch(err => console.log(err));
     }
@@ -115,9 +117,11 @@ const ListeCollaborateurFront = () => {
         <div className="page">
             <NavBarUser />
             <div className="content">
+                <SideBarUser/>
                 <div className="main-content">
                     <div className="bg-black rounded-lg p-5">
-                        <Typography variant="h1" className="text-white text-center text-3xl p-5">Les collaborateurs aux seins de Sahaza Group</Typography>
+                        <Typography variant="h1" className="text-white text-center text-3xl p-5">Les collaborateurs  de Sahaza Group</Typography>
+                        {/* <Slider/> */}
                         <div className="m-5">
                             <div className="flex flex-row items-center search_form m-5 p-5">
                                 <input type="text" value={recherche} onChange={handleInputChange} placeholder="Rechercher un collaborateur" ></input>
@@ -148,7 +152,7 @@ const ListeCollaborateurFront = () => {
                                 )).map((collab,index) => (
                                     <div key={index} className="col-span-4 cursor-pointer" onClick={()=> {ViewModal(collab.id); openViewModal()}}>
                                         <div  className="flex flex-row " >
-                                            <Avatar src={`http://192.168.16.244:4000/${collab.image}`} alt={collab.nom} size="xxl" className="m-3" />
+                                            <Avatar src={`http://localhost:8000/${collab.image}`} alt={collab.nom} size="xxl" className="m-3" />
                                             <div className="flex flex-col justify-center">
                                                 <Typography variant="h6">{collab.prenom} {collab.nom}</Typography>
                                                 <Typography variant="h6">{collab.matricule} </Typography>
@@ -166,7 +170,7 @@ const ListeCollaborateurFront = () => {
                                     )).map((collab,index) => (
                                         <div  key={index} className="col-span-4 cursor-pointer"  onClick={()=> {ViewModal(collab.id); openViewModal()}}>
                                         <div className="flex flex-row ">
-                                            <Avatar src={`http://192.168.16.244:4000/${collab.image}`} alt={collab.nom} size="xxl" className="m-3" />
+                                            <Avatar src={`http://localhost:8000/${collab.image}`} alt={collab.nom} size="xxl" className="m-3" />
                                             <div className="flex flex-col justify-center">
                                                 <Typography variant="h6">{collab.prenom} {collab.nom}</Typography>
                                                 <Typography variant="h6">{collab.matricule} </Typography>
