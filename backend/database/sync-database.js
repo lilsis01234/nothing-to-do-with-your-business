@@ -13,7 +13,7 @@ const Module = require('../Modele/formation/Module');
 const Seance = require('../Modele/formation/Seance');
 const ParticipantsSeance = require('../Modele/formation/ParticipantsSeance');
 
-const association = require('../Modele/formation/formation/associationSeanceCollab');
+const association = require('../Modele/formation/associationSeanceCollab');
 
 //Synchronisation de la base de donnée 
 async function syncDatabase(){
