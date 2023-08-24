@@ -6,16 +6,18 @@ import SideBarUser from '../SideBar/SideBarUser'
 import Modal from 'react-modal'
 import CollabParDepartement from './CollabParDepartement';
 
+
 const Organigramme = () => {
   const [departement, setDepartement] = useState([]);
 
+  
   useEffect(() => {
     axios.get("http://localhost:8000/api/departement/all_departement")
     .then((response) => {
       setDepartement(response.data);
     })
     .catch((err) => {
-      console.error('Erreur lors de la récupération des donnée:', err)
+      console.error('Erreur lors de la récupération des données:', err)
     })
   }, [])
 
