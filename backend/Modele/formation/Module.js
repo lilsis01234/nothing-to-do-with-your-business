@@ -1,5 +1,5 @@
 const {DataTypes, Model} = require('sequelize');
-const sequelize = require('../database/database');
+const sequelize = require('../../database/database');
 const Formation = require('./Formation');
 
 class Module extends Model{}
