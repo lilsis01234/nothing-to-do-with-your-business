@@ -53,6 +53,7 @@ function SideBar(){
                              <li className="sidebar_sousMenu_item"><Link>Listes des départements</Link></li>
                         </ul>
                      )} */}
+                      <li className="sideBar_menu_item"><Link to="#">Les formations</Link></li>
                    </ul>
             </div>
             )} 
