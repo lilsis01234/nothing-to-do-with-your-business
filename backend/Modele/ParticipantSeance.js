@@ -1,5 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/database');
+const Collaborateur = require('./Collaborateur');
+const Seance = require('./Seance');
 
 class ParticipantSeance extends Model {}
 
@@ -21,4 +23,11 @@ ParticipantSeance.init(
   }
 );
 
+ParticipantSeance.belongsTo(Seance, {
+    foreignKey: 'seance',
+});
+ParticipantSeance.belongsTo(Collaborateur, {
+    foreignKey: 'participant',
+});
+  
 module.exports = ParticipantSeance;
