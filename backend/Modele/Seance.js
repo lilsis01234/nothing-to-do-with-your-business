@@ -1,8 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/database');
-const Formation = require('./formation'); // Assurez-vous d'importer Formation
+const Formation = require('./Formation'); // Assurez-vous d'importer Formation
 const Module = require('./Module'); // Assurez-vous d'importer Module
 const Collaborateur = require('./Collaborateur');
+const ParticipantSeance = require('./ParticipantsSeance');
 
 class Seance extends Model {}
 
@@ -52,7 +53,7 @@ Seance.init(
 
 Seance.belongsTo(Formation, {
   foreignKey: 'formation',
-  onDelete: 'CASCADE',
+  onDelete: 'CASCADE'
 });
 
 Seance.belongsTo(Module, {
@@ -60,7 +61,7 @@ Seance.belongsTo(Module, {
 });
 
 Seance.belongsToMany(Collaborateur, { through: ParticipantSeance, foreignKey: 'seance' });
-Collaborateur.belongsToMany(Seance, { through: ParticipantSeance, foreignKey: 'participant' });
+Collaborateur.belongsToMany(Seance, { through: ParticipantSeance, foreignKey: 'collaborateur' });
 
 
 module.exports = Seance;
