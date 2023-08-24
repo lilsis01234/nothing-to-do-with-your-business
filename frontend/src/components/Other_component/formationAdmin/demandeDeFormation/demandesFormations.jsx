@@ -1,6 +1,6 @@
 import React from 'react'
-import SideBar from '../../Administrateur/SideBarAdmin/SideBar'
-import NavBarAdmin from '../../Administrateur/NavBar/NavBarAdmin'
+import SideBar from '../../../Administrateur/SideBarAdmin/SideBar'
+import NavBarAdmin from '../../../Administrateur/NavBar/NavBarAdmin'
 import { Link } from 'react-router-dom'
 
 const DemandeFormation = () => {
@@ -16,7 +16,7 @@ const DemandeFormation = () => {
                 <div className="search_form">
                   <input type="text"placeholder="Rechercher une formation" className=""></input>
                   <button className="search_Button"> Rechercher </button>
-                  <Link to="#" className="AddCollab_Link">Organiser une formation</Link>
+                  <Link to="/admin/listeFormation" className="AddCollab_Link">Les formations</Link>
                 </div>
             </div>
             </div>
