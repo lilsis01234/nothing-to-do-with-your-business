@@ -6,14 +6,14 @@ const CompteCollab = require('../Modele/CompteCollab');
 const RoleCollab = require('../Modele/Role');
 const PasswordResetRequest = require('../Modele/PasswordResetRequest');
 const ArchiveCollab = require('../Modele/ArchiveCollab');
-const Formation = require('../Modele/Formation');
-const CommentaireFormation = require('../Modele/CommentaireFormation');
-const DiscussionFormation= require('../Modele/discussionFormation');
-const Module = require('../Modele/Module');
-const Seance = require('../Modele/Seance');
-const ParticipantsSeance = require('../Modele/ParticipantsSeance');
+const Formation = require('../Modele/formation/Formation');
+const CommentaireFormation = require('../Modele/formation/CommentaireFormation');
+const DiscussionFormation= require('../Modele/formation/discussionFormation');
+const Module = require('../Modele/formation/Module');
+const Seance = require('../Modele/formation/Seance');
+const ParticipantsSeance = require('../Modele/formation/ParticipantsSeance');
 
-const association = require('../Modele/associationSeanceCollab');
+const association = require('../Modele/formation/formation/associationSeanceCollab');
 
 //Synchronisation de la base de donnée 
 async function syncDatabase(){
