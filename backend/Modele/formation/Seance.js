@@ -1,8 +1,8 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../database/database');
+const sequelize = require('../../database/database');
 const Formation = require('./Formation'); // Assurez-vous d'importer Formation
 const Module = require('./Module'); // Assurez-vous d'importer Module
-const Collaborateur = require('./Collaborateur');
+const Collaborateur = require('../Collaborateur');
 const ParticipantSeance = require('./ParticipantsSeance');
 
 class Seance extends Model {}
