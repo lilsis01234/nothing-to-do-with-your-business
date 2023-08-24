@@ -2,6 +2,7 @@ const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/database');
 const Formation = require('./formation'); // Assurez-vous d'importer Formation
 const Module = require('./Module'); // Assurez-vous d'importer Module
+const Collaborateur = require('./Collaborateur');
 
 class Seance extends Model {}
 
@@ -38,6 +39,10 @@ Seance.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    nombreDePlacesReservees: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
@@ -52,7 +57,10 @@ Seance.belongsTo(Formation, {
 
 Seance.belongsTo(Module, {
   foreignKey: 'module',
-  onDelete: 'CASCADE',
 });
+
+Seance.belongsToMany(Collaborateur, { through: ParticipantSeance, foreignKey: 'seance' });
+Collaborateur.belongsToMany(Seance, { through: ParticipantSeance, foreignKey: 'participant' });
+
 
 module.exports = Seance;
