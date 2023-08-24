@@ -2,7 +2,7 @@ const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../database/database');
 const Collaborateur = require('./Collaborateur');
 const Module = require('./Module');
-const Formation = require('./formation');
+const Formation = require('./Formation');
 
 
 class DiscussionFormation extends Model{}
@@ -13,7 +13,7 @@ DiscussionFormation.init({
         allowNull: false
     },
     contenu:{
-        type:DataTypes.STRING(500),
+        type:DataTypes.STRING(1000),
         allowNull: false
     },
     fichier:{
@@ -51,6 +51,9 @@ DiscussionFormation.init({
 DiscussionFormation.belongsTo(Formation, {
     foreignKey : 'formation',
     onDelete : 'CASCADE'
+})
+DiscussionFormation.belongsTo(Collaborateur, {
+    foreignKey : 'collaborateur'
 })
 
 module.exports = DiscussionFormation;
