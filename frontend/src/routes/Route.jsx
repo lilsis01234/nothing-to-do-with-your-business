@@ -9,7 +9,7 @@ import ForgotPasswordForm from '../components/Authentification/ForgotPasswordFor
 import ResetPasswordForm from '../components/Authentification/ResetPasswordForm/ResetPasswordForm'
 import PageDepartement from '../components/Administrateur/Departement/Departement'
 import PagePoste from '../components/Administrateur/Poste/Poste'
-import Formations from '../components/Other_component/formations/formations'
+import Formations from '../components/Other_component/formationsUser/formations'
 
 import AjoutCollaborateur from '../components/Administrateur/Collaborateur/AjoutCollaborateur/AjoutCollaborateur'
 import ListeCollaborateur from '../components/Administrateur/Collaborateur/ListeCollaborateur/ListeCollaborateur'
@@ -17,6 +17,8 @@ import Profil from '../components/ProfilUser/PageProfil/Profil'
 import ProfilParametre from '../components/ProfilUser/ProfilParametre/ProfilParametre'
 import ListeCollaborateurFront from '../components/User/Collaborateur/ListeCollaborateur/ListeCollaborateurFront'
 import Organigramme from '../components/User/Organigramme/Organigramme'
+import DemandeFormation from '../components/Other_component/formationAdmin/demandeDeFormation/demandesFormations'
+import ListeFormationAdmin from '../components/Other_component/formationAdmin/listeFormationsAdmin/listeFormationsAdmin'
 
 function AppRoute(){
     return (
@@ -28,14 +30,14 @@ function AppRoute(){
                 <Route path="/user/profile" element={<Profil/>}/>
                 <Route path="/user/accountSetting" element={<ProfilParametre/>}/>
                 <Route path="/error" element={<ErrorPage/>}/>
-
+                <Route path="/admin/demandeFormation" element={<DemandeFormation/>}/>
                 <Route path="/password/reset_request/" element={<ForgotPasswordForm/>}/>
                 <Route path="/reset-password/:token" element={<ResetPasswordForm/>}/>
-
+                <Route path="/admin/listeFormation" element={<ListeFormationAdmin/>}/>
                 {/* Routes pour le backOffice du module Gestion des collaborateurs */}
                 <Route path="/admin/departement" element={<PageDepartement/>}/>
                 <Route path="/admin/poste" element={<PagePoste/>}/>
-                <Route path="/formations" element={<Formations/>}/>
+                <Route path="/user/formations" element={<Formations/>}/>
                 <Route path="/admin/collaborateur/add" element={<AjoutCollaborateur/>}/>
                 <Route path="/admin/collaborateur/liste" element={<ListeCollaborateur/>}/>
                 <Route path="/admin/home" element={<HomeAdmin/>}/>
