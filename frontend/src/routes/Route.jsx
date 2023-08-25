@@ -18,7 +18,8 @@ import ProfilParametre from '../components/ProfilUser/ProfilParametre/ProfilPara
 import ListeCollaborateurFront from '../components/User/Collaborateur/ListeCollaborateur/ListeCollaborateurFront'
 import Organigramme from '../components/User/Organigramme/Organigramme'
 import DemandeFormation from '../components/Administrateur/formationAdmin/demandeDeFormation/demandesFormations'
-
+import ListDepartementUser from '../components/User/Departement/ListeDepartement/ListeDepartement'
+import CollabDepartement from '../components/User/Departement/CollabParDepartement/CollabDepartement'
 
 function AppRoute(){
     return (
@@ -33,10 +34,12 @@ function AppRoute(){
                 <Route path="/admin/demandeFormation" element={<DemandeFormation/>}/>
                 <Route path="/password/reset_request/" element={<ForgotPasswordForm/>}/>
                 <Route path="/reset-password/:token" element={<ResetPasswordForm/>}/>
+                <Route path="/user/formations" element={<Formations/>}/>
+                <Route path="/user/departements" element={<ListDepartementUser/>}/>
+                <Route path="/userDepartement/collaborateurs/:id" element={<CollabDepartement/>}/>
                 {/* Routes pour le backOffice du module Gestion des collaborateurs */}
                 <Route path="/admin/departement" element={<PageDepartement/>}/>
                 <Route path="/admin/poste" element={<PagePoste/>}/>
-                <Route path="/user/formations" element={<Formations/>}/>
                 <Route path="/admin/collaborateur/add" element={<AjoutCollaborateur/>}/>
                 <Route path="/admin/collaborateur/liste" element={<ListeCollaborateur/>}/>
                 <Route path="/admin/home" element={<HomeAdmin/>}/>
