@@ -7,7 +7,6 @@ import './ListeCollaborateurFront.css'
 import Modal from 'react-modal'
 import ViewCollaborateur from '../ViewCollaborateurFront/ViewCollaborateur';
 import SideBarUser from '../../SideBar/SideBarUser';
-// import Slider from '../../NouveauxCollaborateurs/slider';
 
 
 
