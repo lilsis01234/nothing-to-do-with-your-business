@@ -1,15 +1,10 @@
 import React from 'react'
-import SideBar from '../../../Administrateur/SideBarAdmin/SideBar'
-import NavBarAdmin from '../../../Administrateur/NavBar/NavBarAdmin'
 import { Link } from 'react-router-dom'
 
 const ListeFormationAdmin = () => {
   return (
-    <div className='page'>
-    <NavBarAdmin />
+    <>
     <div className='content'>
-    <SideBar/>
-    <div>
             <div className="collabListes">
             <h1 className="collabListes_title font-bold">Les formations disponibles</h1>
             <div className="collabListes_Item">
@@ -24,8 +19,7 @@ const ListeFormationAdmin = () => {
     <div className='liste_formation'>
 
     </div>
-    </div>
-    </div>
+    </>
   )
 }
 
