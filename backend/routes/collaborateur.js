@@ -139,7 +139,7 @@ router.post('/add', upload.single('image') ,async (req, res) => {
 router.get('/all_collaborateurs', async(req,res) => {
     Collaborateur.findAll({
         include : {model : Poste, attributes : ['titrePoste', 'departement'], 
-             include : {model : Departement, attributes : ['nomDepartement']}   
+             include : {model : Departement, attributes : ['nomDepartement','id']}   
             }
     })
     .then((collaborateur) => {
@@ -161,6 +161,7 @@ router.get('/all_collaborateurs', async(req,res) => {
                     image : collaborateur.image,
                     titrePoste : collaborateur.Poste.titrePoste,
                     departement : collaborateur.Poste.Departement.nomDepartement,
+                    idDepartement : collaborateur.Poste.Departement.id,
                 }
             })
         )
@@ -205,7 +206,6 @@ router.get('/listes_derniers_embauches',async (req, res) => {
         res.status(500).json({message : "Une erreur s'est produit dans la récupération des données"})
     }
 })
-
 
 //Afficher seulement un collaborateur
 router.get('/:id', async(req, res) => {
