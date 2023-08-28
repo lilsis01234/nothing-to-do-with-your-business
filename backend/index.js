@@ -17,6 +17,8 @@ const password = require('./routes/motdepasseOublie');
 const archive = require('./routes/archiveCollab')
 const userProfile = require('./routes/userProfile');
 const formations = require('./routes/formation/formation');
+const modules = require('./routes/formation/module')
+const seances = require('./routes/formation/seance')
 
 //importation des configurations$
 const dotenv = require('dotenv');
@@ -55,6 +57,8 @@ app.use('/api/password', password ); //route pour les mot de passe
 app.use('/api/archive', archive); //route pour archiver les collaborateurs 
 app.use('/api/user', userProfile); //route pour afficher les profiles des collaborateurs 
 app.use('/api/formation',formations);
+app.use('/api/module',modules);
+app.use('/api/seance',seances);
 
 
 //Connection à la base de donnée MySQL
