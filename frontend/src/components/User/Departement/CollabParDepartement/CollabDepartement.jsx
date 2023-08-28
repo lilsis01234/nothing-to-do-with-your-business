@@ -11,6 +11,7 @@ const CollabDepartement = () => {
   const [collabs, setCollab] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
+  const[departement,setDepartement] = useState([]);
 
   const fetchCollaborateur = () => {
     axios
@@ -19,6 +20,13 @@ const CollabDepartement = () => {
         setCollab(res.data);
       })
       .catch((err) => console.log(err));
+    axios.get("http://localhost:8000/api/departement/all_departement")
+      .then((response) => {
+           setDepartement(response.data);
+      })
+      .catch((err)=>{
+          console.error('Erreur lors de la récupération des données:', err)
+      })
   };
 
   useEffect(() => {
@@ -42,9 +50,10 @@ const CollabDepartement = () => {
   );
   
   // Vérifiez les collaborateurs après le filtrage
-  const departementsUniques = Array.from(new Set(collaborateurs.map(collab => collab.departement)));
-  console.log("DEPARTEMENT:", departementsUniques); 
 
+  const nomdepartement= departement.filter((departement)=>departement.id.toString()=== id.toString());
+  const departementsUniques = Array.from(new Set(nomdepartement.map(dep => dep.nomDepartement)));
+  console.log("DEPARTEMENT:", departementsUniques); 
   return (
     <div>
       <div className="page">
