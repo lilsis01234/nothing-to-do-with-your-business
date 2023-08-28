@@ -62,8 +62,7 @@ const CollabDepartement = () => {
           <SideBarUser />
           <div>
             <Typography variant="h2">
-              Collaborateurs dans le département{' '}
-              {departementsUniques.length > 0 ? departementsUniques.join(', ') : 'Inconnu'}
+              Collaborateurs dans le département{' '}{departementsUniques}
             </Typography>
             {collaborateurs.length === 0 ? (
               <p>Pas de collaborateur dans ce département</p>
