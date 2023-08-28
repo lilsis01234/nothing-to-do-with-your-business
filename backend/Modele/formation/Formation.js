@@ -32,6 +32,10 @@ Formation.init({
         sequelize,
         modelName : 'Formation'
     })
+    Formation.belongsTo(Collaborateur, {
+        foreignKey : 'formateur',
+        onDelete : 'CASCADE'
+    })
 
 
 module.exports = Formation;
