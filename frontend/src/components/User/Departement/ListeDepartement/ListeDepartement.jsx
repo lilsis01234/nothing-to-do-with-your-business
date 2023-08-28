@@ -85,7 +85,7 @@ const ListDepartementUser = () => {
         <div className="search_form" id='search'>
             <input type="text" value={searchTerm} onChange={handleInputChange} placeholder="Rechercher un département" className="search_input"/>
              {searchTerm && (
-                 <button onClick ={() => setSearchTerm(' ')} className="search_clearButton">X</button>
+                 <button onClick ={() => setSearchTerm('')} className="search_clearButton">X</button>
                 )}
             <button onClick={handleSearch} className="search_Button">Rechercher </button>
         </div>
@@ -98,7 +98,7 @@ const ListDepartementUser = () => {
                 </tr>
             </thead>
             <tbody>
-                {searchTerm === ' ' ? (departementList.filter((departementList)=> departementList.nomDepartement.toLowerCase()!=='direction').map((departement)=> (
+                {searchTerm === '' ? (departementList.filter((departementList)=> departementList.nomDepartement.toLowerCase()!=='direction').map((departement)=> (
                     <tr key={departement.id}>
                         <td className="w-40">{departement.id}</td>
                         <td className="w-80">{departement.nomDepartement}</td>
