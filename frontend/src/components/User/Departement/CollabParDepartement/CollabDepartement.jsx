@@ -32,6 +32,7 @@ const CollabDepartement = () => {
   useEffect(() => {
     fetchCollaborateur();
   }, []);
+  console.log(collabs);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -53,7 +54,7 @@ const CollabDepartement = () => {
 
   const nomdepartement= departement.filter((departement)=>departement.id.toString()=== id.toString());
   const departementsUniques = Array.from(new Set(nomdepartement.map(dep => dep.nomDepartement)));
-  console.log("DEPARTEMENT:", departementsUniques); 
+ 
   return (
     <div>
       <div className="page">
@@ -84,7 +85,7 @@ const CollabDepartement = () => {
                         <Typography variant="h6">{collab.matricule}</Typography>
                         <Typography variant="small">{collab.poste}</Typography>
                         <Typography variant="small">
-                          {collab.adresse}
+                          {collab.quartier}, {collab.ville}
                         </Typography>
                       </div>
                     </>
