@@ -8,7 +8,7 @@ router.get('/all_modules', async(req,res) => {
     Module.findAll({
         include: {
             model: Formation,
-            attributes: ['theme']
+            attributes: ['theme','id']
         },
     })
     .then((module) => {
@@ -19,6 +19,7 @@ router.get('/all_modules', async(req,res) => {
                     theme : module.theme,
                     description : module.description,
                     formation: module.Formation.theme,
+                    idFormation: module.Formation.id,
                 }
             })
         )
