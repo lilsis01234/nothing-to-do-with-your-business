@@ -8,20 +8,18 @@ router.use(cookieParser());
 
 router.get('/all_seances', async (req, res) => {
     Seance.findAll({
-        include:
-            {
-                model: Module,
-                attributes: ['titreModule','id'],
+        include: {
+            model: Module,
+            attributes: ['titreModule', 'id'],
+            include: {
+                model: Formation,
+                attributes: ['theme', 'id','approbation'],
                 include: {
-                    model: Formation,
-                    attributes:['theme','id'],
-                    where: {approbation:1},
-                    include :{
-                        model: Collaborateur,
-                        attributes:['nom','prenom'],
-                    }
+                    model: Collaborateur,
+                    attributes: ['nom', 'prenom'],
                 }
             }
+        }
     })
     .then((seances) => {
         const formattedSeances = seances.map((seance) => {
@@ -36,6 +34,7 @@ router.get('/all_seances', async (req, res) => {
                 prenomOrganisateur: seance.Module.Formation.Collaborateur.prenom,
                 idModule: seance.Module.id,
                 idFormation: seance.Module.Formation.id,
+                approbation:seance.Module.Formation.approbation,
             };
         });
         res.status(200).json(formattedSeances);
