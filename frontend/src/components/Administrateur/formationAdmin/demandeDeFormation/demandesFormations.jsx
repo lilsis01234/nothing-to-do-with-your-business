@@ -29,16 +29,16 @@ const DemandeFormation = () => {
 
     }, [navigate])
 
-  const fetchCollaborateur = () => {
-    axios.get('http://localhost:8000/api/formation/all_demandes_formations')
-      .then(res => {setDemandeFormation(res.data)})
-      .catch(err => console.log(err));
-  }
+    const fetchCollaborateur = () => {
+      axios.get('http://localhost:8000/api/formation/all_demandes_formations')
+        .then(res => {setDemandeFormation(res.data)})
+        .catch(err => console.log(err));
+    }
 
-  useEffect(() => {
-    fetchCollaborateur();
-  }, [])
-  console.log(demandeFormation)
+    useEffect(() => {
+      fetchCollaborateur();
+    }, [])
+    console.log(demandeFormation)
 
 const Demandes = ()=>{
   return (
@@ -46,88 +46,88 @@ const Demandes = ()=>{
     <center>
     <div className='content'>
       <div className='collabListes'>
-            <h1 className="collabListes_title font-bold">Liste des demandes de formations</h1>
-            <div className="collabListes_Item">
-                <div className="search_form">
-                  <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
-                  <button className="search_Button"> Rechercher </button>
-                </div>
+        <h1 className="collabListes_title font-bold">Liste des demandes de formations</h1>
+          <div className="collabListes_Item">
+            <div className="search_form">
+              <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
+              <button className="search_Button"> Rechercher </button>
             </div>
-    </div>
+          </div>
+      </div>
     </div>
     </center>
+
     {demandeFormation.length !== 0 ? (
       <table className="listDemandeFormation">
-            <thead>
-                <tr>
-                    <th >Thème</th>
-                    <th >Description</th>
-                    <th >Organisateur(trice)</th>
-                    <th >Voir plus</th>
-                    <th >Approuver</th>
-                    <th >Désapprouver</th>
-                </tr>
-            </thead>
-            <tbody>
-                {recherche === '' || recherche === null ? (demandeFormation.map((formation)=> (
-                    <tr key={formation.id}>
-                        <td >{formation.theme}</td>
-                        <td >{formation.description}</td>
-                        <td >{formation.nomformateur} {formation.prenomformateur}</td>
-                        <td ><button className="table_item_icon">Voir plus</button></td>
-                        <td >
-                            {/* lien '/collaborateur/id_departement' */}
-                            <button className="table_item_icon">Approuver</button>
-                        </td>
-                        <td >
-                            {/* lien '/delete id' */}
-                            <button className="table_item_icon">Désapprouver</button>
-                        </td>
-                    </tr>
-                ))) : (
-                  demandeFormation.filter((formations)=>formations.theme.toLowerCase().includes(recherche.toLowerCase()) || formations.description.toLowerCase().includes(recherche.toLowerCase())).map((formation) => (
-                    <tr key={formation.id}>
-                     <td >{formation.theme}</td>
-                        <td >{formation.description}</td>
-                        <td >{formation.nomformateur} {formation.prenomformateur}</td>
-                        {/* lien collaborateur id voir plus */}
-                        <td><button className="table_item_icon">Voir plus</button></td>
-                        <td >
-                            {/* lien '/collaborateur/id_departement' */}
-                            <button className="table_item_icon">Approuver</button>
-                        </td>
-                        <td >
-                            {/* lien '/delete id' */}
-                            <button className="table_item_icon">Désapprouver</button>
-                        </td>
-                    </tr>
-                ))
-            )}
-            </tbody>
-        </table>):
-        (
-          <h3>Aucune demande de formation pour le moment</h3>
-        ) 
+          <thead>
+              <tr>
+                  <th >Thème</th>
+                  <th >Description</th>
+                  <th >Organisateur(trice)</th>
+                  <th >Voir plus</th>
+                  <th >Approuver</th>
+                  <th >Désapprouver</th>
+              </tr>
+          </thead>
+          <tbody>
+              {recherche === '' || recherche === null ? (demandeFormation.map((formation)=> (
+              <tr key={formation.id}>
+                  <td >{formation.theme}</td>
+                  <td >{formation.description}</td>
+                  <td >{formation.nomformateur} {formation.prenomformateur}</td>
+                  <td ><button className="table_item_icon">Voir plus</button></td>
+                  <td >
+                    {/* lien '/collaborateur/id_departement' */}
+                    <button className="table_item_icon">Approuver</button>
+                  </td>
+                  <td >
+                    {/* lien '/delete id' */}
+                    <button className="table_item_icon">Désapprouver</button>
+                  </td>
+              </tr>
+              ))) : (
+              demandeFormation.filter((formations)=>formations.theme.toLowerCase().includes(recherche.toLowerCase()) || formations.description.toLowerCase().includes(recherche.toLowerCase())).map((formation) => (
+              <tr key={formation.id}>
+                  <td >{formation.theme}</td>
+                  <td >{formation.description}</td>
+                  <td >{formation.nomformateur} {formation.prenomformateur}</td>
+                  {/* lien collaborateur id voir plus */}
+                  <td><button className="table_item_icon">Voir plus</button></td>
+                  <td >
+                    {/* lien '/collaborateur/id_departement' */}
+                    <button className="table_item_icon">Approuver</button>
+                  </td>
+                  <td >
+                    {/* lien '/delete id' */}
+                    <button className="table_item_icon">Désapprouver</button>
+                  </td>
+              </tr>
+              ))
+              )}
+          </tbody>
+      </table>):
+    (
+      <h3>Aucune demande de formation pour le moment</h3>
+    ) 
     }
     </>
-    )
-
+  )
 }
 
   return (
     <div className='page'>
-    <NavBarAdmin />
-    <div className='content'>
-    <SideBar/>
-    <div>
-            <div className="collabListes">
-            <button className="visible" onClick={() => setVisible(!listevisible)}>
-            <h1>{listevisible ? 'Voir les demandes de formations' : 'Voir les formations disponibles'}</h1>
-            </button>
-            {listevisible ? <ListeFormationAdmin /> : <Demandes />}
+      <NavBarAdmin />
+        <div className='content'>
+          <SideBar/>
+            <div>
+              <div className="collabListes">
+                <button className="visible" onClick={() => setVisible(!listevisible)}>
+                <h1>{listevisible ? 'Voir les demandes de formations' : 'Voir les formations disponibles'}</h1>
+                </button>
+                {listevisible ? <ListeFormationAdmin /> : <Demandes />}
+              </div>
             </div>
-            </div>
-            </div>
+        </div>
     </div>
   )
 }
