@@ -69,8 +69,7 @@ sequelize.authenticate()
     .catch((err) =>{
         console.error('Erreur à la connexion à la base de donnes:', err)
     })
-
-
+    
 
 /*
 connection.connect((err) =>{
