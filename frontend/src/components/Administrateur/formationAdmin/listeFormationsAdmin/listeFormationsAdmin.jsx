@@ -65,7 +65,7 @@ const ListeFormationAdmin = () => {
                         <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
                         <td className="w-60">
                             {/* lien '/collaborateur/id_departement' */}
-                            <button className="table_item_icon">Voir les séances</button>
+                            <button className="table_item_icon">Voir plus</button>
                         </td>
                     </tr>
                 ))) : (
@@ -76,7 +76,7 @@ const ListeFormationAdmin = () => {
                         <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
                         <td className="w-60">
                           {/* lien '/collaborateur/id_departement' */}
-                          <button className="table_item_icon">Voir les séances</button>
+                          <button className="table_item_icon">Voir plus</button>
                         </td>
                     </tr>
                 ))
