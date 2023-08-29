@@ -46,5 +46,34 @@ router.get('/all_seances', async (req, res) => {
     });
 });
 
+router.get('/seances/:idModule', async (req, res) => {
+    try{
+        const idModule = req.params.idModule;
+ 
+         //Recherche de la formation ayant cet id
+         const module = await Module.findAll({
+             where : {
+                 id : idModule,
+            }
+         })
+ 
+         if (!module || module.length === 0){
+             return res.status(404).json({message: 'Aucun module trouvé pour cette formation'})
+         }
+ 
+         //Récupérations des modules associés à cette formation
+         const seances = await Seance.findAll({
+             where : {module: module.map(module => module.id)},
+             include : {model : Module}
+         })
+ 
+         res.json(seances);
+ 
+     } catch (error) {
+         console.error(error);
+         res.status(500).json({message : 'Erreur lors de la récupération des séances'})
+     }
+ }
+)
 
 module.exports = router;
