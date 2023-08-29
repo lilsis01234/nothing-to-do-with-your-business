@@ -15,6 +15,7 @@ router.get('/all_seances', async (req, res) => {
                 include: {
                     model: Formation,
                     attributes:['theme','id'],
+                    where: {approbation:1},
                     include :{
                         model: Collaborateur,
                         attributes:['nom','prenom'],
@@ -37,7 +38,6 @@ router.get('/all_seances', async (req, res) => {
                 idFormation: seance.Module.Formation.id,
             };
         });
-
         res.status(200).json(formattedSeances);
         console.log(formattedSeances);
     })
@@ -46,4 +46,6 @@ router.get('/all_seances', async (req, res) => {
         res.status(500).json({ message: 'Une erreur est survenue lors de la récupération des séances.' });
     });
 });
+
+
 module.exports = router;
