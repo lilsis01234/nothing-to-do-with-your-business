@@ -3,20 +3,24 @@ const cookieParser = require('cookie-parser');
 const Formation = require('../../Modele/formation/Formation');
 const Module = require('../../Modele/formation/Module');
 const Seance = require('../../Modele/formation/Seance');
+const Collaborateur = require('../../Modele/Collaborateur');
 router.use(cookieParser());
 
 router.get('/all_seances', async (req, res) => {
     Seance.findAll({
-        include: [
-            {
-                model: Formation,
-                attributes: ['theme']
-            },
+        include:
             {
                 model: Module,
-                attributes: ['titreModule']
+                attributes: ['titreModule','id'],
+                include: {
+                    model: Formation,
+                    attributes:['theme','id'],
+                    include :{
+                        model: Collaborateur,
+                        attributes:['nom','prenom'],
+                    }
+                }
             }
-        ]
     })
     .then((seances) => {
         const formattedSeances = seances.map((seance) => {
@@ -25,8 +29,12 @@ router.get('/all_seances', async (req, res) => {
                 heureentree: seance.heureStart,
                 heuresortie: seance.heureEnd,
                 places: seance.nombreDePlaces,
-                formation: seance.Formation.theme,
-                module: seance.Module.titreModule
+                formation: seance.Module.Formation.theme,
+                module: seance.Module.titreModule,
+                nomOrganisateur: seance.Module.Formation.Collaborateur.nom,
+                prenomOrganisateur: seance.Module.Formation.Collaborateur.prenom,
+                idModule: seance.Module.id,
+                idFormation: seance.Module.Formation.id,
             };
         });
 
@@ -38,5 +46,4 @@ router.get('/all_seances', async (req, res) => {
         res.status(500).json({ message: 'Une erreur est survenue lors de la récupération des séances.' });
     });
 });
-
 module.exports = router;
