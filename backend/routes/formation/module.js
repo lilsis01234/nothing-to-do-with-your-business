@@ -44,7 +44,7 @@ router.get('/modules/:formationId', async(req, res) => {
         })
 
         if (!formations || formations.length === 0){
-            return res.status(404).json({message: 'Aucune formation trouvée pour ce module'})
+            return res.status(404).json({message: 'Aucun module trouvé pour cette formation'})
         }
 
         //Récupérations des employés associé à ce poste
