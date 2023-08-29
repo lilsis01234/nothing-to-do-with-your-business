@@ -34,4 +34,32 @@ router.get('/all_modules', async(req,res) => {
     }) 
 })
 
+router.get('/modules/:formationId', async(req, res) => {
+    try{
+       const idFormation = req.params.formationId;
+
+        //Rechercher le postes qui appartiennent au departement
+        const formations = await Formation.findAll({
+            where : {id : idFormation}
+        })
+
+        if (!formations || formations.length === 0){
+            return res.status(404).json({message: 'Aucune formation trouvée pour ce module'})
+        }
+
+        //Récupérations des employés associé à ce poste
+        const modules = await Module.findAll({
+            where : {formation: formations.map(formation => formation.id)},
+            include : {model : Formation}
+        })
+
+        res.json(modules);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({message : 'Erreur lors de la récupération des employés'})
+    }
+})
+
+
 module.exports = router;
