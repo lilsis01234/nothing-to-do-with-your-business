@@ -51,6 +51,7 @@ const ListeFormationUser = () => {
                       <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
                       <button className="search_Button"> Rechercher </button>
                       <Link to="#" className="AddCollab_Link">Organiser une formation</Link>
+                      <Link to="#" className="AddCollab_Link">Mes formations</Link>
                     </div>
                   </div>
               </div>
