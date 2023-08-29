@@ -38,7 +38,7 @@ router.get('/modules/:formationId', async(req, res) => {
     try{
        const idFormation = req.params.formationId;
 
-        //Rechercher le postes qui appartiennent au departement
+        //Recherche de la formation ayant cet id
         const formations = await Formation.findAll({
             where : {id : idFormation}
         })
@@ -47,7 +47,7 @@ router.get('/modules/:formationId', async(req, res) => {
             return res.status(404).json({message: 'Aucun module trouvé pour cette formation'})
         }
 
-        //Récupérations des employés associé à ce poste
+        //Récupérations des modules associé à cette formation
         const modules = await Module.findAll({
             where : {formation: formations.map(formation => formation.id)},
             include : {model : Formation}
