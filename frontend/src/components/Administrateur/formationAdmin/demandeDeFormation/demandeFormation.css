@@ -8,3 +8,9 @@
     color: white !important;
     font-size: 1.5rem;
 }
+.listDemandeFormation{
+    width: 100%;
+}
+.listDemandeFormation th, .listDemandeFormation td{
+    width: 20%;
+}
