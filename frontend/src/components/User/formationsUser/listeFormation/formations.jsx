@@ -4,7 +4,7 @@ import axios from 'axios';
 import NavBarUser from '../../NavBarUser/NavBarUser';
 import SideBarUser from '../../SideBar/SideBarUser';
 
-const ListeFormationAdmin = () => {
+const ListeFormationUser = () => {
   const [formations,setFormations] = useState([]);
   const[recherche,setRecherche] = useState('');
   const[formationfiltre, setFormationsfiltre] = useState([]);
@@ -106,4 +106,4 @@ const ListeFormationAdmin = () => {
   )
 }
 
-export default ListeFormationAdmin
+export default ListeFormationUser
