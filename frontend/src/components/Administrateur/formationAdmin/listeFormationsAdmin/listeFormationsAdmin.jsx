@@ -32,7 +32,7 @@ const ListeFormationAdmin = () => {
   const totalPages = Math.ceil(formations.length / itemsPerPage);
   const handlePageChange = (page) => {
     setCurrentPage(page);
-}
+  }
 
 
   return (
