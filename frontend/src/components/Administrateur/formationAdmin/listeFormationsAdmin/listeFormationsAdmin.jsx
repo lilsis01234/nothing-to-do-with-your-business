@@ -93,7 +93,7 @@ const ListeFormationAdmin = () => {
           >
             {page}
           </button>
-            ))}
+        ))}
     </div>
     </>
   )
