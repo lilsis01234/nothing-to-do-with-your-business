@@ -56,6 +56,7 @@ const Demandes = ()=>{
     </div>
     </div>
     </center>
+    {demandeFormation.length !== 0 ? (
       <table className="listDemandeFormation">
             <thead>
                 <tr>
@@ -103,7 +104,11 @@ const Demandes = ()=>{
                 ))
             )}
             </tbody>
-        </table>
+        </table>):
+        (
+          <h3>Aucune demande de formation pour le moment</h3>
+        ) 
+    }
     </>
     )
 
