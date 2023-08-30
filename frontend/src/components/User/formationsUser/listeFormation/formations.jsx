@@ -61,6 +61,8 @@ const ListeFormationUser = () => {
                     <th className="w-40">Thème</th>
                     <th className="w-60">Description</th>
                     <th className="w-60">Organisateur(trice)</th>
+                    <th className="w-60">Voir plus</th>
+                    <th className="w-60">Annuler l'approbation</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -70,7 +72,7 @@ const ListeFormationUser = () => {
                     <td className="w-60">{formation.description}</td>
                     <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
                     <td className="w-60">
-                      <button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button>
+                      <button className="table_item_icon"><Link to= {`/user/formation/${formation.id}`}>Voir plus</Link></button>
                     </td>
                   </tr>
                 ))) : (
@@ -80,7 +82,7 @@ const ListeFormationUser = () => {
                     <td className="w-60">{formation.description}</td>
                     <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
                     <td className="w-60">
-                      <button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button>
+                      <button className="table_item_icon"><Link to= {`/user/formation/${formation.id}`}>Voir plus</Link></button>
                     </td>
                   </tr>
                 ))
