@@ -9,7 +9,7 @@ import ForgotPasswordForm from '../components/Authentification/ForgotPasswordFor
 import ResetPasswordForm from '../components/Authentification/ResetPasswordForm/ResetPasswordForm'
 import PageDepartement from '../components/Administrateur/Departement/Departement'
 import PagePoste from '../components/Administrateur/Poste/Poste'
-import Formations from '../components/User/formationsUser/listeFormation/formations'
+import ListeFormationUser from '../components/User/formationsUser/listeFormation/formations'
 
 import AjoutCollaborateur from '../components/Administrateur/Collaborateur/AjoutCollaborateur/AjoutCollaborateur'
 import ListeCollaborateur from '../components/Administrateur/Collaborateur/ListeCollaborateur/ListeCollaborateur'
@@ -34,7 +34,7 @@ function AppRoute(){
                 <Route path="/admin/demandeFormation" element={<DemandeFormation/>}/>
                 <Route path="/password/reset_request/" element={<ForgotPasswordForm/>}/>
                 <Route path="/reset-password/:token" element={<ResetPasswordForm/>}/>
-                <Route path="/user/formations" element={<Formations/>}/>
+                <Route path="/user/formations" element={<ListeFormationUser/>}/>
                 <Route path="/user/departements" element={<ListDepartementUser/>}/>
                 <Route path="/userDepartement/collaborateurs/:id" element={<CollabDepartement/>}/>
                 {/* Routes pour le backOffice du module Gestion des collaborateurs */}
