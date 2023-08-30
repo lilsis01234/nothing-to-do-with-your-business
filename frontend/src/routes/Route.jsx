@@ -20,6 +20,8 @@ import Organigramme from '../components/User/Organigramme/Organigramme'
 import DemandeFormation from '../components/Administrateur/formationAdmin/demandeDeFormation/demandesFormations'
 import ListDepartementUser from '../components/User/Departement/ListeDepartement/ListeDepartement'
 import CollabDepartement from '../components/User/Departement/CollabParDepartement/CollabDepartement'
+import VoirPlusFormation from '../components/Administrateur/formationAdmin/VoirPlus/VoirPlusFormation'
+import VoirPlusFormationUser from '../components/User/formationsUser/voirPlusFormationUser/VoirPlusFormationUser'
 
 function AppRoute(){
     return (
@@ -48,6 +50,8 @@ function AppRoute(){
                 <Route path="/user/home" element={<HomeUser/>}/>
                 <Route path="/collaborateur/list" element={<ListeCollaborateurFront/>}/>
                 <Route path="/enterprise/organigramme" element={<Organigramme/>}/>
+                <Route path="/admin/formation/:id" element={<VoirPlusFormation/>} />
+                <Route path="/user/formation/:id" element={<VoirPlusFormationUser/>} />
 
               
             </Routes>
