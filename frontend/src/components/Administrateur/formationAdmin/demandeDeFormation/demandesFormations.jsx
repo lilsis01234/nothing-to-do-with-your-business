@@ -82,15 +82,15 @@ const Demandes = ()=>{
     </center>
 
     {demandeFormation.length !== 0 ? (
-      <table className="listDemandeFormation">
+      <table className="listDepartementUser_table">
           <thead>
               <tr>
-                  <th >Thème</th>
-                  <th >Description</th>
-                  <th >Organisateur(trice)</th>
-                  <th >Voir plus</th>
-                  <th >Approuver</th>
-                  <th >Refuser</th>
+                  <th className="w-40">Thème</th>
+                  <th className="w-60">Description</th>
+                  <th className="w-60">Organisateur(trice)</th>
+                  <th className="w-60">Voir plus</th>
+                  <th className="w-60">Approuver</th>
+                  <th className="w-60">Refuser</th>
               </tr>
           </thead>
           <tbody>
