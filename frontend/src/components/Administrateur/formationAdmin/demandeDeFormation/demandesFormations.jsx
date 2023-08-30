@@ -100,7 +100,7 @@ const Demandes = ()=>{
                   <td >{formation.description}</td>
                   <td >{formation.nomformateur} {formation.prenomformateur}</td>
 
-                  <td ><button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button></td>
+                  <td ><button className="table_item_icon"><Link to= {`/admin/formation/${formation.id}`}>Voir plus</Link></button></td>
                   <td >
                     <button className="table_item_icon" onClick={() => handleApprove(formation.id)}>Approuver</button>
                   </td>
@@ -117,7 +117,7 @@ const Demandes = ()=>{
                   <td >{formation.description}</td>
                   <td >{formation.nomformateur} {formation.prenomformateur}</td>
                   {/* lien formation/idFormation voir plus */}
-                  <td><button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button></td>
+                  <td><button className="table_item_icon"><Link to= {`/admin/formation/${formation.id}`}>Voir plus</Link></button></td>
                   <td >
                     <button className="table_item_icon" onClick={() => handleApprove(formation.id)}>Approuver</button>
                   </td>
