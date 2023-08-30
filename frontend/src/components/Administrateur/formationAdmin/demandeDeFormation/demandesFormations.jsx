@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import ListeFormationAdmin from '../listeFormationsAdmin/listeFormationsAdmin'
 import './demandeFormation.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const DemandeFormation = () => {
   const navigate = useNavigate();
@@ -99,7 +100,7 @@ const Demandes = ()=>{
                   <td >{formation.description}</td>
                   <td >{formation.nomformateur} {formation.prenomformateur}</td>
 
-                  <td ><button className="table_item_icon">Voir plus</button></td>
+                  <td ><button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button></td>
                   <td >
                     <button className="table_item_icon" onClick={() => handleApprove(formation.id)}>Approuver</button>
                   </td>
@@ -116,7 +117,7 @@ const Demandes = ()=>{
                   <td >{formation.description}</td>
                   <td >{formation.nomformateur} {formation.prenomformateur}</td>
                   {/* lien formation/idFormation voir plus */}
-                  <td><button className="table_item_icon">Voir plus</button></td>
+                  <td><button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button></td>
                   <td >
                     <button className="table_item_icon" onClick={() => handleApprove(formation.id)}>Approuver</button>
                   </td>
