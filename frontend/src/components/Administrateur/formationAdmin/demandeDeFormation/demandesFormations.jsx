@@ -91,7 +91,7 @@ const Demandes = ()=>{
                   <td >{formation.theme}</td>
                   <td >{formation.description}</td>
                   <td >{formation.nomformateur} {formation.prenomformateur}</td>
-                  {/* lien collaborateur id voir plus */}
+                  {/* lien formation/idFormation voir plus */}
                   <td><button className="table_item_icon">Voir plus</button></td>
                   <td >
                     {/* lien '/collaborateur/id_departement' */}
