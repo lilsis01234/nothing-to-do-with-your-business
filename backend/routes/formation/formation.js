@@ -64,6 +64,26 @@ router.get('/all_formations', async(req,res) => {
     }) 
 })
 
+router.post('/approuver/:id', async (req, res) => {
+    const formationId = req.params.id;
+    
+    try {
+        const updatedFormation = await Formation.update(
+            { approbation: 1 },
+            { where: { id: formationId } }
+        );
+
+        if (updatedFormation[0] === 0) {
+            return res.status(404).json({ message: "Formation not found." });
+        }
+
+        return res.status(200).json({ message: "Formation approved successfully." });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "An error occurred while approving the formation." });
+    }
+});
+
 router.get('/formations/:idPersonne',async(req,res)=>{
     const idPersonne = req.params.idPersonne;
     Formation.findAll({
@@ -87,7 +107,6 @@ router.get('/formations/:idPersonne',async(req,res)=>{
         console.log(formation)
     }) 
 })
-
 router.post('/addFormation',async(req,res)=>{
     try{
         const newFormation = await(Formation.create({
