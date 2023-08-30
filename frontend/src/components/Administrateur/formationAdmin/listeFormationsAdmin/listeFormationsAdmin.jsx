@@ -23,7 +23,7 @@ const ListeFormationAdmin = () => {
     fetchCollaborateur();
   }, [])
   console.log(formations)
-  
+
   const handleCancel= (formationId) => {
     axios.post(`http://localhost:8000/api/formation/annulerapprobation/${formationId}`)
         .then(response => {
@@ -77,8 +77,7 @@ const ListeFormationAdmin = () => {
             <td className="w-60">{formation.description}</td>
             <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
             <td className="w-60">
-              {/* lien '/collaborateur/id_departement' */}
-              <button className="table_item_icon">Voir plus</button>
+              <button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button>
             </td>
             <td className="w-60">
                 {/* lien '/collaborateur/id_departement' */}
@@ -92,8 +91,7 @@ const ListeFormationAdmin = () => {
               <td className="w-60">{formation.description}</td>
               <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
               <td className="w-60">
-                {/* lien '/collaborateur/id_departement' */}
-                <button className="table_item_icon">Voir plus</button>
+                <button className="table_item_icon"><Link to= {`/formation/${formation.id}`}>Voir plus</Link></button>
               </td>
               <td className="w-60">
                 {/* lien '/collaborateur/id_departement' */}
