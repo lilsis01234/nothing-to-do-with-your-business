@@ -64,4 +64,46 @@ router.get('/all_formations', async(req,res) => {
     }) 
 })
 
+router.get('/formations/:idPersonne',async(req,res)=>{
+    const idPersonne = req.params.idPersonne;
+    Formation.findAll({
+        where: {
+            formateur: idPersonne ,
+        }
+
+    })
+    .then((formation) => {
+        res.status(200).json(
+            formation.map((formation) => {
+                return {
+                    id : formation.id,
+                    theme : formation.theme,
+                    description : formation.description,
+                    duree : formation.duree,
+                    approbation : formation.approbation,
+                }
+            })
+        )
+        console.log(formation)
+    }) 
+})
+
+router.post('/addFormation',async(req,res)=>{
+    try{
+        const newFormation = await(Formation.create({
+            theme:req.body.theme,
+            description:req.body.description,
+            duree:req.body.duree,
+            formateur:req.body.formateur,
+            approbation:0
+        }))
+        const demandeFormation = await newFormation.save();
+        res.status(201).json(demandeFormation);
+    }
+    catch(err){
+        console.error(err)
+    }
+
+})
+
 module.exports = router;
