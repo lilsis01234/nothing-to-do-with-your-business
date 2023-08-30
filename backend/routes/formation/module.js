@@ -21,7 +21,6 @@ router.get('/all_modules', async(req,res) => {
             module.map((module) => {
                 return {
                     nom : module.titreModule,
-                    theme : module.theme,
                     description : module.description,
                     formation: module.Formation.theme,
                     idFormation: module.Formation.id,
@@ -62,6 +61,20 @@ router.get('/modules/:formationId', async(req, res) => {
         res.status(500).json({message : 'Erreur lors de la récupération des employés'})
     }
 })
+router.post('/addModule',async(req,res)=>{
+    try{
+        const newModule = await(Module.create({
+            titreModule:req.body.titreModule,
+            description:req.body.description,
+            formation:req.body.formation,
+        }))
+        const module = await newModule.save();
+        res.status(201).json(module);
+    }
+    catch(err){
+        console.error(err)
+    }
 
+})
 
 module.exports = router;
