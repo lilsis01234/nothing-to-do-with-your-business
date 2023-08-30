@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import NavBarUser from '../../NavBarUser/NavBarUser';
 import SideBarUser from '../../SideBar/SideBarUser';
+import { useNavigate } from 'react-router-dom';
 
 const ListeFormationUser = () => {
+  const navigate = useNavigate();
   const [formations,setFormations] = useState([]);
   const[recherche,setRecherche] = useState('');
   const[formationfiltre, setFormationsfiltre] = useState([]);
@@ -13,6 +15,20 @@ const ListeFormationUser = () => {
   // Nombre d'éléments par page 
   const itemsPerPage = 15;
    
+  useEffect(() => {
+    // const token = Cookies.get('jwt');
+    const token = localStorage.getItem('jwt');
+    console.log(token);
+    if (!token){
+        navigate('/');
+    }
+
+    const role = localStorage.getItem('role'); 
+    if (!(role === "Administrateur")){
+        navigate('/home');
+    }
+    }, [navigate])
+    
 
   const fetchCollaborateur = () => {
     axios.get('http://localhost:8000/api/formation/all_formations')
