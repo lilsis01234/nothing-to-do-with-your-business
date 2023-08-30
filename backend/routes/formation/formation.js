@@ -34,7 +34,6 @@ router.get('/all_demandes_formations', async(req,res) => {
     }) 
 })
 
-
 router.get('/all_formations', async(req,res) => {
     Formation.findAll({
         include: {
@@ -84,13 +83,28 @@ router.post('/approuver/:id', async (req, res) => {
     }
 });
 
+router.delete('/desapprouver/:id', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const deleteFormation = await Formation.findByPk(id);
+        if (!deleteFormation) {
+            return res.status(404).json({error : 'Formation introuvable'});
+        }
+        await deleteFormation.destroy();
+        res.sendStatus(204);
+    }
+    catch (error){
+        console.error('Erreur lors de la suppréssion :', error)
+        res.status(500).json({message : 'Erreur lors de la suppression du'})
+    }
+});
+
 router.get('/formations/:idPersonne',async(req,res)=>{
     const idPersonne = req.params.idPersonne;
     Formation.findAll({
         where: {
             formateur: idPersonne ,
         }
-
     })
     .then((formation) => {
         res.status(200).json(
@@ -107,6 +121,7 @@ router.get('/formations/:idPersonne',async(req,res)=>{
         console.log(formation)
     }) 
 })
+
 router.post('/addFormation',async(req,res)=>{
     try{
         const newFormation = await(Formation.create({
