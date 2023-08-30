@@ -14,6 +14,30 @@ const DemandeFormation = () => {
   const[demandeFormation,setDemandeFormation] = useState([]);
   const [recherche,setRecherche]= useState(null);
 
+
+  const fetchCollaborateur = () => {
+    axios.get('http://localhost:8000/api/formation/all_demandes_formations')
+      .then(res => {setDemandeFormation(res.data)})
+      .catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    fetchCollaborateur();
+  }, [])
+  
+  const handleApprove = (formationId) => {
+    axios.post(`http://localhost:8000/api/formation/approuver/${formationId}`)
+        .then(response => {
+            console.log(response.data); // Message de succès ou d'erreur
+            // Effectuer des actions supplémentaires si nécessaire
+            fetchCollaborateur();
+            console.log(demandeFormation)
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+  };
+
   useEffect(() => {
     // const token = Cookies.get('jwt');
     const token = localStorage.getItem('jwt');
@@ -29,16 +53,8 @@ const DemandeFormation = () => {
 
     }, [navigate])
 
-    const fetchCollaborateur = () => {
-      axios.get('http://localhost:8000/api/formation/all_demandes_formations')
-        .then(res => {setDemandeFormation(res.data)})
-        .catch(err => console.log(err));
-    }
 
-    useEffect(() => {
-      fetchCollaborateur();
-    }, [])
-    console.log(demandeFormation)
+   
 
 const Demandes = ()=>{
   return (
@@ -78,8 +94,7 @@ const Demandes = ()=>{
 
                   <td ><button className="table_item_icon">Voir plus</button></td>
                   <td >
-                    {/* lien '/formation/id_formation' */}
-                    <button className="table_item_icon">Approuver</button>
+                    <button className="table_item_icon" onClick={() => handleApprove(formation.id)}>Approuver</button>
                   </td>
                   <td >
                     {/* lien '/delete id' */}
@@ -95,8 +110,7 @@ const Demandes = ()=>{
                   {/* lien formation/idFormation voir plus */}
                   <td><button className="table_item_icon">Voir plus</button></td>
                   <td >
-                    {/* lien '/collaborateur/id_departement' */}
-                    <button className="table_item_icon">Approuver</button>
+                    <button className="table_item_icon" onClick={() => handleApprove(formation.id)}>Approuver</button>
                   </td>
                   <td >
                     {/* lien '/delete id' */}
