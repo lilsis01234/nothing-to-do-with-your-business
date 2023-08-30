@@ -10,9 +10,25 @@ import axios from 'axios'
 const DemandeFormation = () => {
   const navigate = useNavigate();
   const [listevisible,setVisible] = useState(false);
-  const[demandeFormation,setDemandeFormation] = useState([]);
+  useEffect(() => {
+    // const token = Cookies.get('jwt');
+    const token = localStorage.getItem('jwt');
+    console.log(token);
+    if (!token){
+        navigate('/');
+    }
 
-  
+    const role = localStorage.getItem('role'); 
+    if (!(role === "Administrateur")){
+        navigate('/home');
+    }
+    }, [navigate])
+    
+   
+
+const Demandes = ()=>{
+
+  const[demandeFormation,setDemandeFormation] = useState([]);
 
   const fetchCollaborateur = () => {
     axios.get('http://localhost:8000/api/formation/all_demandes_formations')
@@ -39,26 +55,9 @@ const DemandeFormation = () => {
         });
   };
 
-  useEffect(() => {
-    // const token = Cookies.get('jwt');
-    const token = localStorage.getItem('jwt');
-    console.log(token);
-    if (!token){
-        navigate('/');
-    }
-
-    const role = localStorage.getItem('role'); 
-    if (!(role === "Administrateur")){
-        navigate('/home');
-    }
-
-    }, [navigate])
 
 
-    
-   
 
-const Demandes = ()=>{
   const [recherche,setRecherche] = useState(null);
   return (
     <>
