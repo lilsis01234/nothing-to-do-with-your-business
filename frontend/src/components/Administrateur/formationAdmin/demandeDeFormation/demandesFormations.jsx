@@ -8,16 +8,16 @@ import './demandeFormation.css'
 import axios from 'axios'
 
 const DemandeFormation = () => {
-
   const navigate = useNavigate();
   const [listevisible,setVisible] = useState(false);
   const[demandeFormation,setDemandeFormation] = useState([]);
-  const [recherche,setRecherche]= useState(null);
 
+  
 
   const fetchCollaborateur = () => {
     axios.get('http://localhost:8000/api/formation/all_demandes_formations')
-      .then(res => {setDemandeFormation(res.data)})
+      .then(res => {setDemandeFormation(res.data)
+      })
       .catch(err => console.log(err));
   }
 
@@ -25,6 +25,7 @@ const DemandeFormation = () => {
     fetchCollaborateur();
   }, [])
   
+
   const handleApprove = (formationId) => {
     axios.post(`http://localhost:8000/api/formation/approuver/${formationId}`)
         .then(response => {
@@ -54,9 +55,11 @@ const DemandeFormation = () => {
     }, [navigate])
 
 
+    
    
 
 const Demandes = ()=>{
+  const [recherche,setRecherche] = useState(null);
   return (
     <>
     <center>
@@ -65,8 +68,13 @@ const Demandes = ()=>{
         <h1 className="collabListes_title font-bold">Liste des demandes de formations</h1>
           <div className="collabListes_Item">
             <div className="search_form">
-              <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
-              <button className="search_Button"> Rechercher </button>
+            <input type='text' placeholder='rechercher ici' onChange={(e) => {
+              setRecherche(e.target.value);
+            }}
+          onKeyUp={(e) => {
+               if (e.key === "Enter") {
+                e.target.focus(); // Maintenir le focus sur l'input après avoir appuyé sur "Enter"
+              }}}/>
             </div>
           </div>
       </div>
@@ -82,7 +90,7 @@ const Demandes = ()=>{
                   <th >Organisateur(trice)</th>
                   <th >Voir plus</th>
                   <th >Approuver</th>
-                  <th >Désapprouver</th>
+                  <th >Refuser</th>
               </tr>
           </thead>
           <tbody>
@@ -98,11 +106,12 @@ const Demandes = ()=>{
                   </td>
                   <td >
                     {/* lien '/delete id' */}
-                    <button className="table_item_icon">Désapprouver</button>
+                    <button className="table_item_icon">Refuser</button>
                   </td>
               </tr>
               ))) : (
-              demandeFormation.filter((formations)=>formations.theme.toLowerCase().includes(recherche.toLowerCase()) || formations.description.toLowerCase().includes(recherche.toLowerCase())).map((formation) => (
+
+              demandeFormation.filter((formations)=>formations.theme.toLowerCase().includes(recherche.toLowerCase())||formations.description.toLowerCase().includes(recherche.toLowerCase()) ).map((formation) => (
               <tr key={formation.id}>
                   <td >{formation.theme}</td>
                   <td >{formation.description}</td>
@@ -114,7 +123,7 @@ const Demandes = ()=>{
                   </td>
                   <td >
                     {/* lien '/delete id' */}
-                    <button className="table_item_icon">Désapprouver</button>
+                    <button className="table_item_icon">Refuser</button>
                   </td>
               </tr>
               ))
