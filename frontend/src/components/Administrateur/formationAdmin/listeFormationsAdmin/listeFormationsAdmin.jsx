@@ -24,6 +24,18 @@ const ListeFormationAdmin = () => {
   }, [])
   console.log(formations)
   
+  const handleCancel= (formationId) => {
+    axios.post(`http://localhost:8000/api/formation/annulerapprobation/${formationId}`)
+        .then(response => {
+            console.log(response.data); // Message de succès ou d'erreur
+            // Effectuer des actions supplémentaires si nécessaire
+            fetchCollaborateur();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+  };
+  
   useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -68,6 +80,10 @@ const ListeFormationAdmin = () => {
               {/* lien '/collaborateur/id_departement' */}
               <button className="table_item_icon">Voir plus</button>
             </td>
+            <td className="w-60">
+                {/* lien '/collaborateur/id_departement' */}
+                <button className="table_item_icon" onClick={() => handleCancel(formation.id)}>Annuler l'approbation</button>
+              </td>
             </tr>
         ))) : (
         formationfiltre.filter((formations)=>formations.theme.toLowerCase().includes(recherche.toLowerCase()) || formations.description.toLowerCase().includes(recherche.toLowerCase())).map((formation) => (
@@ -78,6 +94,10 @@ const ListeFormationAdmin = () => {
               <td className="w-60">
                 {/* lien '/collaborateur/id_departement' */}
                 <button className="table_item_icon">Voir plus</button>
+              </td>
+              <td className="w-60">
+                {/* lien '/collaborateur/id_departement' */}
+                <button className="table_item_icon" onClick={() => handleCancel(formation.id)}>Annuler l'approbation</button>
               </td>
             </tr>
         ))
