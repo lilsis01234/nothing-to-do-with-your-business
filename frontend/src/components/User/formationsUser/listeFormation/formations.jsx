@@ -29,6 +29,7 @@ const ListeFormationUser = () => {
     }
     }, [navigate])
     
+    const id = localStorage.getItem('id');
 
   const fetchCollaborateur = () => {
     axios.get('http://localhost:8000/api/formation/all_formations')
@@ -67,7 +68,7 @@ const ListeFormationUser = () => {
                       <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
                       <button className="search_Button"> Rechercher </button>
                       <Link to="#" className="AddCollab_Link">Organiser une formation</Link>
-                      <Link to="#" className="AddCollab_Link">Mes formations</Link>
+                      <Link to={`/mesFormationsUser/${id}`} className="AddCollab_Link">Mes formations</Link>
                     </div>
                   </div>
               </div>
