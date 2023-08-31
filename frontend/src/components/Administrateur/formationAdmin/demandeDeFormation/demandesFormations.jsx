@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 const DemandeFormation = () => {
   const navigate = useNavigate();
   const [listevisible,setVisible] = useState(false);
+  
   useEffect(() => {
     // const token = Cookies.get('jwt');
     const token = localStorage.getItem('jwt');
