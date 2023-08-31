@@ -13,7 +13,7 @@ const VoirPlusFormationUser = () => {
         }
     
         const role = localStorage.getItem('role'); 
-        if (!(role === "Administrateur")){
+        if (!(role === "User")){
             navigate('/home');
         }
         }, [navigate])
