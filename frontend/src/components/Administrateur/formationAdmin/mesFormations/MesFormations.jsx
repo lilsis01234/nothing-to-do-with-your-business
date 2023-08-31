@@ -60,11 +60,11 @@ const MesFormationsAdmin = () => {
 
   return (
     <div className='page'>
-    <NavBarAdmin />
+     <NavBarAdmin />
       <div className='content'>
         <SideBar/>
           <div>
-            <div className="collabListes">
+           <div className="collabListes">
             <div className='content'>
              <div className="collabListes">
                 <h1 className="collabListes_title font-bold">Toutes les formations que vous avez organisées</h1>
