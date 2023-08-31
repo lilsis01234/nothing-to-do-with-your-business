@@ -67,6 +67,31 @@ router.get('/all_formations', async(req,res) => {
     }) 
 })
 
+router.get('/all_formations/:id', async(req,res)=>{
+    const formationId = req.params.id;
+        try {
+            const modules = await Module.findAll({
+                where:
+                    {
+                        formation: formationId,
+                    },
+            });
+            const seances = await Seance.findAll({
+                where:{
+                    module:modules
+                }
+            })
+            const formation = await Formation.findByPk(formationId)
+            if (!formation || !modules || !seances) {
+                return res.status(404).json({ error: 'Formation introuvable' });
+            }
+            res.status(200).json({formation,modules,seances});
+        } catch (error) {
+            console.error('Erreur lors de la récupération des informations de la formation :', error);
+            res.status(500).json({ message: 'Erreur lors de la récupération des informations de la formation' });
+        }
+    });
+
 router.post('/approuver/:id', async (req, res) => {
     const formationId = req.params.id;
     
