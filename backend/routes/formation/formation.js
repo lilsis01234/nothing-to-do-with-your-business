@@ -4,8 +4,10 @@ router.use(cookieParser());
 
 const Formation = require('../../Modele/formation/Formation');
 const Collaborateur = require('../../Modele/Collaborateur');
-const { Module } = require('module');
 const Seance = require('../../Modele/formation/Seance');
+const Module = require('../../Modele/formation/Module');
+
+
 
 router.get('/all_demandes_formations', async(req,res) => {
     Formation.findAll({
@@ -105,31 +107,34 @@ router.post('/annulerapprobation/:id', async (req, res) => {
 });
 
 router.delete('/desapprouver/:id', async (req, res) => {
-    const {id} = req.params;
-    try { 
+    const { id } = req.params;
+    try {
         const deleteFormation = await Formation.findByPk(id);
         if (!deleteFormation) {
-            return res.status(404).json({error : 'Formation introuvable'});
+            return res.status(404).json({ error: 'Formation introuvable' });
         }
-        await deleteFormation.destroy();
-        res.sendStatus(204);
-        // const deletedModule = await Module.findAll({
-        //     where:{
-        //         formation: id
-        //     },
-        // })
-        // await deletedModule.destroy();
         
-        // const deletedSeance = await Seance.findAll({
-        //     where:{
-        //         formation:1
-        //     }
-        // })
-        // await deletedSeance.destroy();
-    }
-    catch (error){
-        console.error('Erreur lors de la suppréssion :', error)
-        res.status(500).json({message : 'Erreur lors de la suppression du'})
+        // Supprimer les séances associées
+        await Seance.destroy({
+            where: {
+                formation: id
+            }
+        });
+
+        // Supprimer les modules associés
+        await Module.destroy({
+            where: {
+                formation: id
+            }
+        });
+
+        // Supprimer la formation elle-même
+        await deleteFormation.destroy();
+
+        res.sendStatus(204);
+    } catch (error) {
+        console.error('Erreur lors de la suppression :', error);
+        res.status(500).json({ message: 'Erreur lors de la suppression' });
     }
 });
 
