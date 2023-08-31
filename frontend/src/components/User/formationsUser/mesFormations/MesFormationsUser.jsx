@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import NavBarUser from '../../NavBarUser/NavBarUser';
 import SideBarUser from '../../SideBar/SideBarUser';
 
-const MesFormationsAdmin = () => {
+const MesFormationsUser = () => {
 
     const[formationfiltre, setFormationsfiltre] = useState([]);
 
@@ -135,4 +135,4 @@ const MesFormationsAdmin = () => {
 )
 }
 
-export default MesFormationsAdmin
+export default MesFormationsUser
