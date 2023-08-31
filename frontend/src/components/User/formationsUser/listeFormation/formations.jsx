@@ -24,7 +24,7 @@ const ListeFormationUser = () => {
     }
 
     const role = localStorage.getItem('role'); 
-    if (!(role === "Administrateur")){
+    if (!(role === "User")){
         navigate('/home');
     }
     }, [navigate])
@@ -68,10 +68,12 @@ const ListeFormationUser = () => {
                       <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
                       <button className="search_Button"> Rechercher </button>
                       <Link to="#" className="AddCollab_Link">Organiser une formation</Link>
-                      <Link to={`/mesFormationsUser/${id}`} className="AddCollab_Link">Mes formations</Link>
                     </div>
                   </div>
+                <Link to={`/mesFormationsUser/${id}`} className="AddCollab_Link">Mes formations</Link>
               </div>
+              {formations.length !== 0 ?(
+              <>
               <table className="listDepartementUser_table">
                 <thead>
                   <tr>
@@ -79,7 +81,7 @@ const ListeFormationUser = () => {
                     <th className="w-60">Description</th>
                     <th className="w-60">Organisateur(trice)</th>
                     <th className="w-60">Voir plus</th>
-                    <th className="w-60">Annuler l'approbation</th>
+                    <th className="w-60">Accéder au forum</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -117,6 +119,10 @@ const ListeFormationUser = () => {
                 </button>
               ))}
               </div>
+              </>
+              ) : (
+                <h3>Pas de formation pour le moment</h3>
+              )}
             </div>
         </div>
     </div>
