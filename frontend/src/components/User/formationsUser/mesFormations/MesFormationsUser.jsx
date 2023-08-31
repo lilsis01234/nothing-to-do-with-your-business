@@ -1,8 +1,24 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const MesFormationsUser = () => {
-    // maka localStorage.getItem('id')
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    // const token = Cookies.get('jwt');
+    const token = localStorage.getItem('jwt');
+    console.log(token);
+    if (!token){
+        navigate('/');
+    }
+
+    const role = localStorage.getItem('role'); 
+    if (!(role === "Administrateur")){
+        navigate('/home');
+    }
+    }, [navigate])
+    
   const {id} = useParams();
   return (
     <div>
