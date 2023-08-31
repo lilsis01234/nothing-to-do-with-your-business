@@ -56,7 +56,18 @@ const Demandes = ()=>{
         });
   };
 
-
+  const handleDesapprove = (formationId) => {
+    axios.delete(`http://localhost:8000/api/formation/desapprouver/${formationId}`)
+        .then(response => {
+            console.log(response.data); // Message de succès ou d'erreur
+            // Effectuer des actions supplémentaires si nécessaire
+            fetchCollaborateur();
+            console.log(demandeFormation)
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+  };
 
 
   const [recherche,setRecherche] = useState(null);
@@ -90,7 +101,7 @@ const Demandes = ()=>{
                   <th className="w-60">Organisateur(trice)</th>
                   <th className="w-60">Voir plus</th>
                   <th className="w-60">Approuver</th>
-                  <th className="w-60">Refuser</th>
+                  <th className="w-60">Supprimer</th>
               </tr>
           </thead>
           <tbody>
@@ -106,7 +117,7 @@ const Demandes = ()=>{
                   </td>
                   <td >
                     {/* lien '/delete id' */}
-                    <button className="table_item_icon">Refuser</button>
+                    <button className="table_item_icon" onClick={() => handleDesapprove(formation.id)}>Supprimer</button>
                   </td>
               </tr>
               ))) : (
@@ -123,7 +134,7 @@ const Demandes = ()=>{
                   </td>
                   <td >
                     {/* lien '/delete id' */}
-                    <button className="table_item_icon">Refuser</button>
+                    <button className="table_item_icon" onClick={() => handleDesapprove(formation.id)}>Supprimer</button>
                   </td>
               </tr>
               ))
