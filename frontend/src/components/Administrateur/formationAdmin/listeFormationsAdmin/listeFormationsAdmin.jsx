@@ -62,6 +62,8 @@ const ListeFormationAdmin = () => {
           </div>
       </div>
     </div>
+    {formations.length !== 0 ? (
+    <>
     <table className="listDepartementUser_table">
       <thead>
         <tr>
@@ -116,6 +118,10 @@ const ListeFormationAdmin = () => {
           </button>
         ))}
     </div>
+    </>
+    ):(
+      <h3>Pas de formation pour le moment</h3>
+    )}
     </>
   )
 }
