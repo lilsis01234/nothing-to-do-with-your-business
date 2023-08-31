@@ -19,7 +19,16 @@ const VoirPlusFormationUser = () => {
         }, [navigate])
         
   return (
-    <div>VoirPlusFormationUser</div>
+    <div>
+    <h1>Formation</h1>
+    {/* theme de la formation */}
+    <h2>Description</h2>
+    {/* description de la formation */}
+    <h3>Les modules</h3>
+    {/* modules de la formations */}
+    <h3>Les séances</h3>
+    {/* séances de la formation */}
+    </div>
   )
 }
 
