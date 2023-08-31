@@ -92,6 +92,7 @@ router.get('/all_formations/:id', async(req,res)=>{
         }
     });
 
+    
 router.post('/approuver/:id', async (req, res) => {
     const formationId = req.params.id;
     
